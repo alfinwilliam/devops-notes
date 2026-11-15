@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Before any push: the identifier scanner over every tracked file, then gitleaks over the commits being pushed.
+# Fails closed: if either tool is missing, the push is blocked. Enable with: git config core.hooksPath tools/githooks
+set -euo pipefail
+
+GITLEAKS_IMAGE="zricethezav/gitleaks@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f"
+
+top=$(git rev-parse --show-toplevel)
+cd "$top"
+
+scanner="${NOTES_SANITIZER:-$HOME/Documents/prep-context/tools/sanitize.py}"
+if [ ! -f "$scanner" ]; then
+  echo "pre-push: scanner not found at $scanner. See RUNBOOK.md, 'Confidentiality scan'." >&2
+  exit 1
+fi
+
+mapfile -t files < <(git ls-files | grep -vE '\.(png|jpg|jpeg|gif|svg|ico|woff2?)$')
+report=$(python3 "$scanner" scan "${files[@]}" 2>&1) || {
+  echo "$report" >&2
+  echo "pre-push: blocked by the identifier scanner" >&2
+  exit 1
+}
+
+# Commits being pushed. Each stdin line is "<local ref> <local sha> <remote ref> <remote sha>".
+zero=0000000000000000000000000000000000000000
+ranges=()
+while read -r _lref lsha _rref rsha; do
+  [ "$lsha" = "$zero" ] && continue
+  if [ "$rsha" = "$zero" ]; then ranges+=("$lsha"); else ranges+=("$rsha..$lsha"); fi
+done
+[ ${#ranges[@]} -eq 0 ] && ranges=("HEAD")
+
+if ! docker info >/dev/null 2>&1; then
+  echo "pre-push: Docker is not running, so the secret scan cannot run. Start Docker and push again." >&2
+  exit 1
+fi
+for r in "${ranges[@]}"; do
+  docker run --rm --network none --user "$(id -u):$(id -g)" -v "$top:/repo:ro" "$GITLEAKS_IMAGE" \
+    git /repo --log-opts="$r" --redact --no-banner >&2 \
+    || { echo "pre-push: blocked by gitleaks" >&2; exit 1; }
+done

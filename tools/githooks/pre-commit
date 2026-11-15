@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Block a commit if any staged file fails the identifier scanner.
+# It scans the staged content, not the working tree. Enable with: git config core.hooksPath tools/githooks
+set -euo pipefail
+
+scanner="${NOTES_SANITIZER:-$HOME/Documents/prep-context/tools/sanitize.py}"
+if [ ! -f "$scanner" ]; then
+  echo "pre-commit: scanner not found at $scanner" >&2
+  echo "pre-commit: restore the prep KB, or point NOTES_SANITIZER at sanitize.py. See RUNBOOK.md, 'Confidentiality scan'." >&2
+  exit 1
+fi
+
+mapfile -t files < <(git diff --cached --name-only --diff-filter=ACMR)
+[ ${#files[@]} -eq 0 ] && exit 0
+
+tmp=$(mktemp -d)
+report=$(mktemp)
+trap 'rm -rf "$tmp" "$report"' EXIT
+
+n=0
+for f in "${files[@]}"; do
+  case "$f" in *.png|*.jpg|*.jpeg|*.gif|*.svg|*.ico|*.woff|*.woff2) continue ;; esac
+  mkdir -p "$tmp/$(dirname "$f")"
+  git show ":$f" > "$tmp/$f"
+  n=$((n + 1))
+done
+[ "$n" -eq 0 ] && exit 0
+
+if ! python3 "$scanner" scan "$tmp" > "$report" 2>&1; then
+  sed "s|$tmp/||g" "$report" >&2
+  echo "pre-commit: blocked. Reword each line with the example values in STYLE.md." >&2
+  echo "pre-commit: a public documentation hostname that is flagged goes in ~/Documents/Prep/denylist/allow.txt. A 'deny:' finding is never exempted." >&2
+  exit 1
+fi

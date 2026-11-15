@@ -1,0 +1,291 @@
+# Site configuration for Material for MkDocs.
+# The nav at the bottom is the one place a new page is registered: copy a line and change it.
+site_name: DevOps Notes
+site_description: General DevOps interview-prep notes. Linux and networking first, then AWS, Kubernetes, delivery and operations.
+site_url: https://alfinwilliam.github.io/devops-notes/
+repo_url: https://github.com/alfinwilliam/devops-notes
+repo_name: alfinwilliam/devops-notes
+edit_uri: edit/main/docs/
+docs_dir: docs
+copyright: Personal study notes. A page marked "AI draft" has not been verified yet; check it against its sources.
+
+theme:
+  name: material
+  font: false
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# With "./preview.sh build" (strict mode) every one of these warnings fails the build.
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn
+    anchors: warn
+
+nav:
+  - Home: README.md
+  - "Start here":
+      - start/README.md
+      - "How to use these notes": start/how-to-use.md
+      - "One request, end to end": start/request-path.md
+      - "The debugging walk": start/debugging-walk.md
+      - "Glossary": start/glossary.md
+  - "Foundations":
+      - "Linux":
+          - linux/README.md
+          - "Shell and filesystem basics": linux/shell-and-filesystem.md
+          - "Users, groups and permissions": linux/permissions.md
+          - "Processes and signals": linux/processes-and-signals.md
+          - "Streams, pipes and redirection": linux/streams-and-redirection.md
+          - "Text tools: grep, sed, awk, find": linux/text-tools.md
+          - "Boot, systemd and services": linux/systemd.md
+          - "Logs": linux/logs.md
+          - "Disks and filesystems": linux/disks-and-filesystems.md
+          - "Memory and the OOM killer": linux/memory-and-oom.md
+          - "Performance triage": linux/performance-triage.md
+          - "SSH": linux/ssh.md
+          - "Packages and updates": linux/packages-and-updates.md
+          - "Bash scripting": linux/bash-scripting.md
+          - "Cron and timers": linux/cron-and-timers.md
+          - "jq and yq": linux/jq-and-yq.md
+      - "Networking":
+          - networking/README.md
+          - "Layers and encapsulation": networking/layers.md
+          - "IP addresses and subnetting": networking/ip-and-subnetting.md
+          - "Routing and NAT": networking/routing-and-nat.md
+          - "TCP and UDP": networking/tcp-and-udp.md
+          - "DNS": networking/dns.md
+          - "HTTP": networking/http.md
+          - "TLS and certificates": networking/tls.md
+          - "Load balancers and proxies": networking/load-balancers-and-proxies.md
+          - "Firewalls and connection tracking": networking/firewalls.md
+          - "Network tools on Linux": networking/network-tools.md
+          - "curl -v, line by line": networking/curl-v-annotated.md
+          - "Nginx as a reverse proxy": networking/nginx.md
+      - "Git":
+          - git/README.md
+          - "How Git stores things": git/how-git-stores-things.md
+          - "Daily workflow": git/daily-workflow.md
+          - "Undoing and recovering": git/undo-and-recover.md
+          - "Remotes, pull requests and access": git/remotes-and-collaboration.md
+          - "Branching and release strategies": git/branching-strategies.md
+  - "AWS":
+      - "AWS identity and network":
+          - aws-core/README.md
+          - "Accounts, regions and the CLI": aws-core/accounts-regions-cli.md
+          - "Organizations, SCPs and multi-account": aws-core/organizations-and-scps.md
+          - "IAM policies and how they are evaluated": aws-core/iam-policies.md
+          - "IAM roles and STS": aws-core/iam-roles-and-sts.md
+          - "Federation and SSO": aws-core/federation-and-sso.md
+          - "Least privilege and AccessDenied": aws-core/least-privilege-and-accessdenied.md
+          - "VPC basics": aws-core/vpc-basics.md
+          - "NAT, endpoints and PrivateLink": aws-core/nat-endpoints-privatelink.md
+          - "Peering, Transit Gateway and VPN": aws-core/vpc-connectivity.md
+          - "Security groups and NACLs": aws-core/security-groups-and-nacls.md
+          - "ALB and NLB": aws-core/load-balancers.md
+          - "Route 53 and ACM": aws-core/route53-and-acm.md
+          - "CloudFront and WAF": aws-core/cloudfront-and-waf.md
+          - "VPC troubleshooting": aws-core/vpc-troubleshooting.md
+      - "AWS services":
+          - aws-services/README.md
+          - "EC2": aws-services/ec2.md
+          - "Auto Scaling and AMIs": aws-services/auto-scaling-and-amis.md
+          - "EBS": aws-services/ebs.md
+          - "EFS": aws-services/efs.md
+          - "S3": aws-services/s3.md
+          - "S3 security": aws-services/s3-security.md
+          - "RDS and Aurora": aws-services/rds-and-aurora.md
+          - "SQS, SNS and EventBridge": aws-services/messaging.md
+          - "KMS, Secrets Manager and Parameter Store": aws-services/kms-and-secrets.md
+          - "CloudWatch": aws-services/cloudwatch.md
+          - "CloudTrail, Athena and Config": aws-services/cloudtrail-and-config.md
+          - "GuardDuty, Security Hub and Inspector": aws-services/security-services.md
+          - "Systems Manager": aws-services/systems-manager.md
+          - "ECR": aws-services/ecr.md
+      - "Serverless and Fargate":
+          - serverless/README.md
+          - "Lambda": serverless/lambda.md
+          - "Lambda networking and permissions": serverless/lambda-networking-and-permissions.md
+          - "API Gateway": serverless/api-gateway.md
+          - "ECS and Fargate": serverless/ecs-and-fargate.md
+          - "Cognito": serverless/cognito.md
+          - "Step Functions": serverless/step-functions.md
+      - "Data stores":
+          - data/README.md
+          - "PostgreSQL for operators": data/postgres-for-operators.md
+          - "Redis and caching patterns": data/redis-and-caching.md
+  - "Containers and Kubernetes":
+      - "Containers":
+          - containers/README.md
+          - "What a container is": containers/what-is-a-container.md
+          - "Images and Dockerfiles": containers/images-and-dockerfiles.md
+          - "Running and debugging containers": containers/running-containers.md
+          - "Registries and image security": containers/registries-and-image-security.md
+          - "Container runtimes": containers/runtimes.md
+          - "Docker Compose": containers/docker-compose.md
+      - "Kubernetes":
+          - kubernetes/README.md
+          - "Architecture and the reconcile loop": kubernetes/architecture.md
+          - "kubectl fluency": kubernetes/kubectl.md
+          - "Pods": kubernetes/pods.md
+          - "Deployments and rollouts": kubernetes/deployments-and-rollouts.md
+          - "StatefulSets and DaemonSets": kubernetes/statefulsets-and-daemonsets.md
+          - "Jobs and CronJobs": kubernetes/jobs-and-cronjobs.md
+          - "Labels, selectors and namespaces": kubernetes/labels-selectors-namespaces.md
+          - "ConfigMaps and Secrets": kubernetes/configmaps-and-secrets.md
+          - "Probes and graceful shutdown": kubernetes/probes-and-graceful-shutdown.md
+          - "Requests, limits and QoS": kubernetes/resources-and-qos.md
+          - "Scheduling": kubernetes/scheduling.md
+          - "Services and DNS": kubernetes/services-and-dns.md
+          - "Ingress and Gateway API": kubernetes/ingress-and-gateway-api.md
+          - "Pod networking and NetworkPolicy": kubernetes/pod-networking-and-network-policy.md
+          - "Storage": kubernetes/storage.md
+          - "Autoscaling": kubernetes/autoscaling.md
+          - "Disruptions, drains and PDBs": kubernetes/disruptions-and-pdbs.md
+          - "RBAC and service accounts": kubernetes/rbac-and-service-accounts.md
+          - "Pod security": kubernetes/pod-security.md
+          - "Finalizers and deletion": kubernetes/finalizers-and-deletion.md
+          - "CRDs, operators and admission webhooks": kubernetes/crds-and-operators.md
+          - "etcd, backups and cluster upgrades": kubernetes/etcd-backups-and-upgrades.md
+          - "Troubleshooting playbook": kubernetes/troubleshooting.md
+      - "EKS":
+          - eks/README.md
+          - "EKS architecture and node options": eks/architecture.md
+          - "Cluster access, IRSA and Pod Identity": eks/access-and-pod-identity.md
+          - "Networking with the VPC CNI": eks/vpc-cni.md
+          - "AWS Load Balancer Controller": eks/load-balancer-controller.md
+          - "EBS and EFS CSI drivers": eks/storage.md
+          - "Secrets from AWS into pods": eks/secrets.md
+          - "Node autoscaling: Cluster Autoscaler vs Karpenter": eks/cluster-autoscaler-vs-karpenter.md
+          - "Karpenter in depth": eks/karpenter.md
+          - "EKS upgrades": eks/upgrades.md
+      - "Helm":
+          - helm/README.md
+          - "Charts, templates and values": helm/charts-and-templates.md
+          - "Releases, hooks and debugging": helm/releases-hooks-debugging.md
+          - "Kustomize, and Helm vs Kustomize": helm/kustomize-vs-helm.md
+      - "Service mesh":
+          - mesh/README.md
+          - "Why a mesh, and Istio architecture": mesh/why-a-mesh.md
+          - "Sidecars and traffic flow": mesh/sidecars-and-traffic-flow.md
+          - "Traffic management": mesh/traffic-management.md
+          - "mTLS and authorization": mesh/mesh-security.md
+          - "Mesh troubleshooting": mesh/mesh-troubleshooting.md
+  - "Delivery":
+      - "Infrastructure as code":
+          - iac/README.md
+          - "Terraform workflow": iac/terraform-workflow.md
+          - "Terraform state": iac/state.md
+          - "Terraform language": iac/language.md
+          - "Modules and environments": iac/modules-and-environments.md
+          - "Reading a plan": iac/reading-a-plan.md
+          - "Import, moved and drift": iac/import-and-drift.md
+          - "Testing and CI for Terraform": iac/testing-and-ci.md
+          - "Terragrunt": iac/terragrunt.md
+          - "CloudFormation and CDK vs Terraform": iac/cloudformation-vs-terraform.md
+          - "Ansible and configuration management": iac/ansible.md
+      - "CI/CD":
+          - cicd/README.md
+          - "CI/CD concepts": cicd/concepts.md
+          - "Deployment strategies": cicd/deployment-strategies.md
+          - "GitHub Actions basics": cicd/github-actions-basics.md
+          - "GitHub Actions in depth": cicd/github-actions-in-depth.md
+          - "Jenkins": cicd/jenkins.md
+          - "Bitbucket Pipelines": cicd/bitbucket-pipelines.md
+          - "OIDC from pipelines to AWS": cicd/oidc-to-aws.md
+          - "Pipeline security": cicd/pipeline-security.md
+          - "Quality and security gates": cicd/quality-and-security-gates.md
+          - "Build tools: Maven, Gradle and npm": cicd/build-tools.md
+          - "Artifacts, registries and versioning": cicd/artifacts-and-registries.md
+      - "GitOps and Argo CD":
+          - gitops/README.md
+          - "GitOps principles": gitops/principles.md
+          - "Argo CD architecture and Applications": gitops/argocd-architecture.md
+          - "Sync, hooks and waves": gitops/sync-hooks-waves.md
+          - "App-of-apps and ApplicationSets": gitops/app-of-apps-and-applicationsets.md
+          - "Deletion, finalizers and safe cleanup": gitops/deletion-and-finalizers.md
+          - "Promotion, rollback and troubleshooting": gitops/promotion-and-rollback.md
+  - "Operate":
+      - "Observability":
+          - observability/README.md
+          - "Signals and methods": observability/signals-and-methods.md
+          - "Prometheus": observability/prometheus.md
+          - "PromQL": observability/promql.md
+          - "Prometheus on Kubernetes": observability/prometheus-on-kubernetes.md
+          - "Alerting and Alertmanager": observability/alerting.md
+          - "SLOs and error budgets": observability/slos.md
+          - "Grafana": observability/grafana.md
+          - "How Kubernetes logging works": observability/kubernetes-logging.md
+          - "Fluent Bit": observability/fluent-bit.md
+          - "OpenSearch": observability/opensearch.md
+          - "Tracing and OpenTelemetry": observability/tracing.md
+      - "Security":
+          - security/README.md
+          - "OAuth 2.0, OIDC and JWTs": security/oauth-oidc-jwt.md
+          - "Secrets management": security/secrets-management.md
+          - "Vulnerability and patch management": security/vulnerability-and-patch-management.md
+          - "Hardening and benchmarks": security/hardening-and-benchmarks.md
+          - "Guardrails for AI agents in operations": security/ai-agent-guardrails.md
+      - "Operations":
+          - operations/README.md
+          - "High availability and failure domains": operations/high-availability.md
+          - "Backup and disaster recovery": operations/backup-and-dr.md
+          - "Cost optimisation": operations/cost-optimisation.md
+          - "Incident response and postmortems": operations/incident-response.md
+          - "Change management": operations/change-management.md
+          - "Migration patterns": operations/migration-patterns.md
+  - "Interview kit":
+      - interview/README.md
+      - "How to answer technical questions": interview/how-to-answer.md
+      - "X vs Y: rapid-fire differences": interview/x-vs-y.md
+      - "Scenario walk-throughs": interview/scenario-walkthroughs.md
+      - "System design on a whiteboard": interview/system-design.md
+      - "\"Walk me through your project\": a skeleton": interview/walk-me-through-your-project.md
+      - "Scripting round: shell and Python exercises": interview/scripting-round.md
+      - "STAR stories": interview/star-stories.md
+      - "Question index": interview/question-index.md

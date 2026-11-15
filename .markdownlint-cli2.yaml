@@ -1,0 +1,11 @@
+# Only the rules that keep a page rendering the same on the site and on github.com.
+config:
+  default: false
+  MD007:            # nested list items are indented by 4 spaces
+    indent: 4
+  MD031: true       # a blank line before and after every code fence
+  MD032: true       # a blank line before and after every list
+  MD046:            # code blocks are fenced, never indented
+    style: fenced
+globs:
+  - "docs/**/*.md"

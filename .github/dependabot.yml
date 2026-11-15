@@ -1,0 +1,8 @@
+# Opens a pull request when one of the actions used in .github/workflows/ has a new version.
+# Merging it is the whole upgrade.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

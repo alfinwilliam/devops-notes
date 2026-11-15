@@ -1,0 +1,9 @@
+# Built site (./preview.sh build) and generator caches
+site/
+.cache/
+
+# Editor and OS noise
+.DS_Store
+*.swp
+__pycache__/
+*.pyc
