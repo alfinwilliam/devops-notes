@@ -75,7 +75,7 @@ One line per term, in plain words, with a link to the one page where the term is
 | Job | Runs pods until a task completes | [Jobs and CronJobs](../kubernetes/jobs-and-cronjobs.md) |
 | JWT | A signed token carrying claims, used by OIDC and service accounts | [OAuth 2.0, OIDC and JWTs](../security/oauth-oidc-jwt.md) |
 | Karpenter | Launches right-sized nodes for pending pods | [Karpenter in depth](../eks/karpenter.md) |
-| kind | Kubernetes in Docker, a local test cluster | [How to use these notes](how-to-use.md) |
+| kind | Kubernetes in Docker, a local test cluster | [Architecture and the reconcile loop](../kubernetes/architecture.md) |
 | kubelet | The node agent that starts pods and reports their status | [Architecture and the reconcile loop](../kubernetes/architecture.md) |
 | Label, selector | Key-value tags on objects, and the queries that pick objects by them | [Labels, selectors and namespaces](../kubernetes/labels-selectors-namespaces.md) |
 | Least privilege | Grant only the permissions a task needs | [Least privilege and AccessDenied](../aws-core/least-privilege-and-accessdenied.md) |
