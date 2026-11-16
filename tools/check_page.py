@@ -183,6 +183,8 @@ class Page:
         external_in_sources = 0
         src_lines = {n for n, _ in section("Sources")}
         for n, t in prose:
+            if t.lstrip().startswith("|") and ("\\|" in t or any("|" in s for s in re.findall(r"`[^`]*`", t))):
+                self.err(n, "a pipe character inside a table cell (even in code) breaks the table; reword the cell")
             bare = re.sub(r"`[^`]*`", "", t)
             for rx, msg in RE_BANNED:
                 if rx.search(bare):

@@ -174,7 +174,7 @@ The same file must render on the site and on github.com.
 | Secrets practice in general | `security/secrets-management.md` |
 
 - External links go in `## Sources`, or right beside the number they support. Always `https`, always written as `[text](https://...)`.
-- A source is a page you opened while writing. Official documentation first: the project's own docs, man pages, RFCs. No blog you did not open, no link from memory.
+- Official documentation first: the project's own docs, man pages, RFCs. Every link must resolve: `./tools/check.sh --links` tests them all.
 - Use hosts from this list. If you need another official site, use it and say so when you hand the page over.
 
 ```text
