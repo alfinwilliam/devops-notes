@@ -45,13 +45,13 @@ The first line of the request is the method, the path (with an optional query st
 ```mermaid
 sequenceDiagram
     participant C as Client
-    participant L as Load balancer or reverse proxy
+    participant L as Load balancer
     participant A as Application
-    C->>L: GET /api/orders, Host shop.example.com
-    L->>A: Same request, plus X-Forwarded-For with the client address
+    C->>L: GET /api/orders<br/>Host: shop.example.com
+    L->>A: Same request, plus<br/>X-Forwarded-For
     A-->>L: 200 OK, JSON body
     L-->>C: 200 OK, JSON body
-    Note over L,A: If the application is down, the proxy itself answers 502 or 503. If it is too slow, 504
+    Note over L,A: App down: the proxy answers 502 or 503<br/>App too slow: 504
 ```
 
 ### Methods

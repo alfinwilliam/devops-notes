@@ -49,7 +49,7 @@ This is why adding one specific route can silently override a working default, a
 ### Hop by hop
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Client 10.0.1.2"] -->|"default via 10.0.1.1"| B["Router: 10.0.1.1 and 10.0.2.1, forwarding on"]
     B -->|"10.0.2.0/24 is directly connected"| C["Server 10.0.2.2"]
     C -->|"default via 10.0.2.1, the reply path"| B
@@ -67,15 +67,15 @@ Each router lowers the packet's **TTL** (time to live) by one. When it reaches z
 
 ```mermaid
 sequenceDiagram
-    participant C as Client 10.0.1.2
-    participant R as NAT router, public side 192.168.100.2
-    participant S as Web server 203.0.113.10
-    C->>R: src 10.0.1.2:38636 to 203.0.113.10:80
-    R->>R: Record the mapping in the connection table
-    R->>S: src 192.168.100.2:38636 to 203.0.113.10:80
-    S-->>R: reply to 192.168.100.2:38636
-    R->>R: Look up the mapping, rewrite the destination back
-    R-->>C: reply to 10.0.1.2:38636
+    participant C as Client<br/>10.0.1.2
+    participant R as NAT router<br/>192.168.100.2
+    participant S as Web server<br/>203.0.113.10
+    C->>R: from 10.0.1.2:38636<br/>to 203.0.113.10:80
+    R->>R: Record<br/>the mapping
+    R->>S: from 192.168.100.2:38636<br/>to 203.0.113.10:80
+    S-->>R: reply to<br/>192.168.100.2:38636
+    R->>R: Reverse<br/>the rewrite
+    R-->>C: reply to<br/>10.0.1.2:38636
 ```
 
 - **Source NAT** (SNAT) rewrites the source address of outgoing packets. Linux's `MASQUERADE` is SNAT to whatever address the outgoing interface has. Home routers, AWS NAT gateways and Kubernetes nodes sending pod traffic out all do this. Many private hosts share one public address, distinguished by port.

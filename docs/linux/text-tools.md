@@ -22,7 +22,7 @@ The habit that makes this work is building a pipeline one step at a time. Run th
 ## How it works
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["access.log"] --> B["grep: keep matching lines"]
     B --> C["awk or cut: keep one field"]
     C --> D["sort: group equal values together"]

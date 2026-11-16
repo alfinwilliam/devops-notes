@@ -24,7 +24,7 @@ The third skill is housekeeping. Logs grow forever unless something trims them, 
 ### Where a log line can end up
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Program writes a line"] --> B{"How was it started?"}
     B -->|"systemd service, writes to stdout"| C["systemd journal: journalctl -u name"]
     B -->|"writes its own file"| D["/var/log/name/app.log"]

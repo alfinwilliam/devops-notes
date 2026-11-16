@@ -52,7 +52,7 @@ Redirection does not change the program. Before starting it, the shell opens a f
 `2>&1` means "make descriptor 2 point to **where descriptor 1 points right now**". It copies a pointer; it does not create a lasting link. The shell processes redirections left to right.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph A["cmd > out.txt 2>&1"]
         A1["Step 1: fd 1 to out.txt"] --> A2["Step 2: fd 2 to where fd 1 points, out.txt"]
     end
@@ -66,7 +66,7 @@ In the first form both streams end up in the file. In the second, errors still g
 ### Pipes
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["grep ERROR app.log"] -->|"stdout into the pipe"| B["sort"]
     B -->|"stdout into the pipe"| C["uniq -c"]
     C --> D["Terminal"]

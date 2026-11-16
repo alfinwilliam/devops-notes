@@ -24,7 +24,7 @@ You describe each service in a small text file: what command to run, as which us
 ### Boot, briefly
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Firmware: BIOS or UEFI"] --> B["Bootloader: GRUB"]
     B --> C["Kernel and initramfs"]
     C --> D["systemd as PID 1"]

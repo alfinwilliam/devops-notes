@@ -22,7 +22,7 @@ A jq program is a **filter**: something that takes a value in and puts values ou
 ## How it works
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["kubectl get pods -o json"] --> B[".items"]
     B --> C[".[] : one pod at a time"]
     C --> D["select(.status.phase != Running)"]

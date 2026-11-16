@@ -29,17 +29,17 @@ A rule matches on some of the **5-tuple**: source address, destination address, 
 
 ```mermaid
 sequenceDiagram
-    participant C as Client 10.0.1.2
-    participant F as Stateful firewall on the server
-    participant S as Server 10.0.2.2, port 8080
+    participant C as Client<br/>10.0.1.2
+    participant F as Stateful<br/>firewall
+    participant S as Server<br/>10.0.2.2:8080
     C->>F: SYN to port 8080
-    F->>F: Rule allows port 8080. Record a NEW connection
+    F->>F: Rule allows 8080<br/>record NEW
     F->>S: Deliver
-    S-->>F: SYN-ACK from port 8080
-    F->>F: Matches a tracked connection: ESTABLISHED, allowed out
+    S-->>F: SYN-ACK
+    F->>F: Tracked flow:<br/>ESTABLISHED
     F-->>C: Deliver
-    C->>F: Data on the same connection
-    F->>F: ESTABLISHED: allowed without checking the port rules again
+    C->>F: More data
+    F->>F: ESTABLISHED: no<br/>port rules checked
     F->>S: Deliver
 ```
 

@@ -18,6 +18,7 @@ from pathlib import Path
 
 MERMAID_IMAGE = "minlag/mermaid-cli@sha256:18938e53497376d524e04b1fc0bf7b6d61a491ce9ff7032bb2855d57155acb10"
 LOCK_FILE = Path(tempfile.gettempdir()) / "devops-notes-mermaid.lock"
+MAX_DIAGRAM_WIDTH = 800   # px. The content column is about 760px on a desktop screen; up to 800 keeps text at 95% or more.
 
 STATUSES = {"stub", "draft", "reviewed", "verified"}
 FORMS = {"full", "short", "guide"}
@@ -258,6 +259,17 @@ class Page:
                                if "error" in l.lower() or "Expecting" in l), "syntax error")
                 lines = ", ".join(str(n) for n, _ in self.mermaid)
                 self.err(self.mermaid[0][0], f"a Mermaid diagram does not parse (diagrams start at lines {lines}): {detail[:200]}")
+                return
+            # Width check: a diagram wider than the content column is shrunk until its text is hard to read.
+            for i, (n, _) in enumerate(self.mermaid, start=1):
+                svg = Path(td) / f"out-{i}.svg"
+                if not svg.is_file():
+                    continue
+                m = re.search(r'viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"', svg.read_text(encoding="utf-8", errors="ignore"))
+                if m and float(m.group(1)) > MAX_DIAGRAM_WIDTH:
+                    self.err(n, f"diagram is {float(m.group(1)):.0f}px wide; the limit is {MAX_DIAGRAM_WIDTH}px (the page column is about 760px), so its text "
+                                f"would shrink to {100 * 760 / float(m.group(1)):.0f}%. Use flowchart TD, fewer or shorter "
+                                f"labels, or <br/> to wrap long sequence messages")
 
 
 def collect(args):

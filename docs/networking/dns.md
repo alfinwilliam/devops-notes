@@ -40,20 +40,15 @@ Two more words. A **zone** is the part of the tree that one owner manages, such 
 ### One lookup, step by step
 
 ```mermaid
-sequenceDiagram
-    participant App as Program and stub resolver
-    participant Res as Recursive resolver
-    participant Root as Root server
-    participant TLD as com TLD server
-    participant Auth as Authoritative server
-    App->>Res: www.example.com A?
-    Res->>Root: www.example.com A?
-    Root-->>Res: Ask the com servers
-    Res->>TLD: www.example.com A?
-    TLD-->>Res: Ask the example.com servers
-    Res->>Auth: www.example.com A?
-    Auth-->>Res: A 203.0.113.10, TTL 300
-    Res-->>App: A 203.0.113.10
+flowchart TD
+    A["Your program and the stub resolver"] -->|"1. www.example.com A?"| R["Recursive resolver"]
+    R -->|"2. ask"| Root["Root server"]
+    Root -.->|"3. ask the .com servers"| R
+    R -->|"4. ask"| TLD[".com TLD server"]
+    TLD -.->|"5. ask the example.com servers"| R
+    R -->|"6. ask"| Auth["Authoritative server for example.com"]
+    Auth -.->|"7. A 203.0.113.10, TTL 300"| R
+    R -->|"8. answer, now cached"| A
 ```
 
 1. **The program asks the operating system for an address.** The system checks its local sources in the order listed in `/etc/nsswitch.conf`. The usual line is `hosts: files dns`: the file `/etc/hosts` first, DNS second.
@@ -62,7 +57,7 @@ sequenceDiagram
 4. **Otherwise it asks a root server.** The root does not know the address. It replies with a **referral**: "ask the servers for `.com`", with their names.
 5. **It asks a `.com` server**, which replies with another referral: "ask the servers for `example.com`".
 6. **It asks an authoritative server for `example.com`**, which holds the record and returns the address.
-7. **It caches every answer** it received, each for that record's own TTL, and returns the final one to your machine.
+7. **It caches every answer** it received, each for that record's own TTL, and returns the final one to your machine (step 8 in the diagram).
 
 The question from your machine is a **recursive query**: "do all the work and give me the answer". The questions the resolver sends are **iterative queries**: each server gives the best pointer it has, and the resolver follows it.
 

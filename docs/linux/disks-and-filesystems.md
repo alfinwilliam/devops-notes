@@ -24,7 +24,7 @@ A filesystem keeps two separate budgets. One is space: the blocks that hold file
 ### From device to path
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Block device: /dev/nvme1n1"] --> B["Partition: /dev/nvme1n1p1"]
     B --> C["Filesystem: mkfs.ext4 or mkfs.xfs"]
     C --> D["Mount point: /data"]

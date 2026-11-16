@@ -26,17 +26,17 @@ The server proves itself with a **host key**: your client remembers it the first
 ```mermaid
 sequenceDiagram
     participant C as Client
-    participant S as Server, sshd on port 22
+    participant S as Server<br/>sshd on port 22
     C->>S: TCP connection to port 22
-    S-->>C: Protocol versions, then key exchange
-    Note over C,S: Both sides derive a shared session key. Everything after is encrypted
-    S-->>C: Host key and a signature made with it
-    C->>C: Compare with ~/.ssh/known_hosts
-    C->>S: User app, offering this public key
-    S->>S: Is it in ~app/.ssh/authorized_keys?
-    S-->>C: Yes, prove you hold the private key
-    C->>S: Signature made with the private key
-    S-->>C: Authenticated. Shell or command starts
+    S-->>C: Protocol versions,<br/>then key exchange
+    Note over C,S: Shared session key agreed.<br/>Everything after is encrypted
+    S-->>C: Host key, and a<br/>signature made with it
+    C->>C: Compare with<br/>known_hosts
+    C->>S: User app, offering<br/>this public key
+    S->>S: In authorized_keys<br/>for app?
+    S-->>C: Yes: prove you hold<br/>the private key
+    C->>S: Signature made<br/>with the private key
+    S-->>C: Authenticated.<br/>Shell or command starts
 ```
 
 1. **Key exchange.** Client and server agree on a fresh session key without ever sending it, so a listener on the network learns nothing.
@@ -65,7 +65,7 @@ The server is strict about permissions. If the user's home directory, `~/.ssh` o
 Private servers usually have no public address. You reach them through a **bastion** (jump host): a hardened machine in a public subnet that accepts SSH and forwards you on. `ProxyJump` does this in one command, and your private key never leaves your laptop, because the second connection is tunnelled through the first and authenticated end to end.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Laptop, holds the private key"] -->|"SSH to the public address"| B["Bastion, public subnet"]
     B -->|"tunnel to port 22"| C["App server, 10.0.2.15, private subnet"]
     A -.->|"second SSH session, end to end through the tunnel"| C

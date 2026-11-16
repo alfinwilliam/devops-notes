@@ -22,7 +22,7 @@ Software comes as **packages**: an archive of files plus a description of what i
 ## How it works
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Repositories listed in /etc/apt/sources.list.d"] -->|"apt update downloads signed indexes"| B["Local package index"]
     B -->|"apt install curl: pick a version, resolve dependencies"| C["Download .deb files"]
     C --> D["dpkg unpacks files and runs install scripts"]

@@ -55,7 +55,7 @@ The list is a **crontab** (cron table). Each line is a schedule and a command. T
 ### What a job runs with
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["cron daemon wakes every minute"] --> B["Reads user crontabs and /etc/cron.d"]
     B --> C{"Schedule matches this minute?"}
     C -->|"yes"| D["Starts the command with /bin/sh"]

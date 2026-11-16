@@ -24,7 +24,7 @@ The things you work on are arranged as one big tree. There are no drive letters.
 ### What the shell does with a line
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["You type a line"] --> B["Shell splits it into words and expands *, $VAR, ~"]
     B --> C["Is the first word a builtin or alias?"]
     C -->|"yes"| D["Shell runs it itself"]
@@ -61,7 +61,7 @@ A path that starts with `/` is **absolute**: it always means the same file. Any 
 A file has two parts. The data lives in blocks on disk. Everything else (size, owner, permissions, timestamps, and where the blocks are) lives in a record called an **inode**, identified by a number. A **directory** is a list that maps names to inode numbers. So a file name is not part of the file: it is an entry in a directory that points at the inode.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Name: report.txt"] --> I["Inode 1042: owner, size, permissions, block list"]
     B["Name: hard.txt, a hard link"] --> I
     I --> D["Data blocks"]

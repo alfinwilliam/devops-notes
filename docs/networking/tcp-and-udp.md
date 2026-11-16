@@ -29,17 +29,17 @@ A connection is identified by four values: source address, source port, destinat
 
 ```mermaid
 sequenceDiagram
-    participant C as Client 10.0.1.2, port 44054
-    participant S as Server 10.0.2.2, port 8080
-    C->>S: SYN, my starting sequence number is x
-    S-->>C: SYN plus ACK, mine is y, I expect x+1 next
-    C->>S: ACK, I expect y+1 next
-    Note over C,S: Connection established. Data flows both ways
+    participant C as Client<br/>10.0.1.2, port 44054
+    participant S as Server<br/>10.0.2.2, port 8080
+    C->>S: SYN<br/>my first sequence number is x
+    S-->>C: SYN plus ACK<br/>mine is y, I expect x+1
+    C->>S: ACK, I expect y+1
+    Note over C,S: Connection established
     C->>S: Data, 5 bytes
     S-->>C: ACK of those bytes
     C->>S: FIN, I am done sending
     S-->>C: FIN plus ACK
-    C->>S: ACK. The client waits in TIME-WAIT before forgetting the connection
+    C->>S: ACK. Client waits in TIME-WAIT
 ```
 
 1. **SYN.** The client asks to open a connection and picks a random starting **sequence number**.

@@ -53,10 +53,10 @@ The server must send the leaf **and** the intermediates. Browsers sometimes fetc
 sequenceDiagram
     participant C as Client
     participant S as Server
-    C->>S: ClientHello: TLS versions, cipher suites, key share, SNI shop.example.com, ALPN h2
+    C->>S: ClientHello: versions, ciphers, key share,<br/>SNI shop.example.com, ALPN h2
     S-->>C: ServerHello: chosen cipher, its key share
-    Note over C,S: Both sides now compute the same session keys. Everything below is encrypted
-    S-->>C: Certificate chain, and a signature proving it holds the private key
+    Note over C,S: Both sides compute the same session keys.<br/>Everything below is encrypted
+    S-->>C: Certificate chain, plus a signature<br/>proving it holds the private key
     S-->>C: Finished
     C->>C: Verify chain, name and dates
     C->>S: Finished

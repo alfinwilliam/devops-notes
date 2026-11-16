@@ -24,7 +24,7 @@ Processes do not take orders by being edited. You send them short notes called *
 ### Where processes come from
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Shell, PID 40"] -->|"fork: copy itself"| B["Child, PID 41, still the shell"]
     B -->|"exec: load /usr/bin/sleep"| C["PID 41 now runs sleep"]
     C -->|"exits with a code"| D["Parent reads the code with wait"]
@@ -74,13 +74,13 @@ When a process is ended by a signal, the shell reports its exit code as **128 pl
 
 ```mermaid
 sequenceDiagram
-    participant M as Manager: systemd, Docker or Kubernetes
+    participant M as Manager<br/>systemd, Docker, Kubernetes
     participant P as Process
     M->>P: SIGTERM
-    P->>P: Handler: stop accepting work, finish, flush, close
+    P->>P: Handler: stop new work,<br/>finish, flush, close
     P-->>M: Exits with code 0
-    Note over M,P: If it is still running when the grace period ends
-    M->>P: SIGKILL, process removed with no cleanup
+    Note over M,P: Still running when the grace period ends?
+    M->>P: SIGKILL: removed,<br/>no cleanup
 ```
 
 Every process manager follows this pattern. `docker stop` waits 10 seconds by default before SIGKILL; Kubernetes waits for the pod's `terminationGracePeriodSeconds`. A program that ignores SIGTERM always ends with 137 and loses whatever it had in progress.
