@@ -291,5 +291,5 @@ These tools are the first pass in almost every investigation, before metrics and
 - [GNU sed manual](https://www.gnu.org/software/sed/manual/sed.html)
 - [GNU awk (gawk) manual](https://www.gnu.org/software/gawk/manual/gawk.html)
 - [GNU coreutils manual: sort, uniq, cut, wc, head, tail](https://www.gnu.org/software/coreutils/manual/coreutils.html)
-- [GNU findutils manual](https://www.gnu.org/software/findutils/manual/html_mono/find.html)
+- [GNU findutils manual](https://www.gnu.org/software/findutils/manual/find.html)
 - [regex(7) manual page](https://man7.org/linux/man-pages/man7/regex.7.html)
