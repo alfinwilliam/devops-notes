@@ -27,7 +27,7 @@ flowchart TD
 
 - **Registry and repositories**: every account has one private registry per Region, at `<account>.dkr.ecr.<region>.amazonaws.com`. Repositories (`sample-app`) hold images by tag and digest ([Registries and image security](../containers/registries-and-image-security.md)).
 - **Authentication**: `GetAuthorizationToken` returns a token valid for **12 hours**, with the permissions of the IAM principal that asked. `aws ecr get-login-password --region eu-west-1` piped into `docker login --username AWS --password-stdin <registry>` is the usual form; the ECR credential helper does it automatically.
-- **Who pulls**: EKS nodes use the node role's ECR read permissions (kubelet's credential provider fetches tokens); ECS uses the task execution role; Lambda container images use the function's service access. CI pushes through a role assumed with OIDC, not stored keys ([OIDC from pipelines to AWS](../cicd/oidc-to-aws.md)).
+- **Who pulls**: EKS nodes use the node role's ECR read permissions (kubelet's credential provider fetches tokens); ECS uses the task execution role; for Lambda container images, either the execution role or the repository policy must allow `ecr:BatchGetImage` and `ecr:GetDownloadUrlForLayer`. CI pushes through a role assumed with OIDC, not stored keys ([OIDC from pipelines to AWS](../cicd/oidc-to-aws.md)).
 - **Repository policies** are resource policies: allow another account's role to pull (`ecr:BatchGetImage`, `ecr:GetDownloadUrlForLayer`, `ecr:BatchCheckLayerAvailability`). The other account's role also needs IAM permissions, including `ecr:GetAuthorizationToken`. Registry-level policies control replication and pull-through cache.
 - **Tag immutability**: pushing an existing tag fails with `ImageTagAlreadyExistsException`. Exclusion filters can leave a few tags (such as `latest`) mutable while the rest are immutable.
 - **Scanning**: **basic** scanning (AWS-native, on push or manual, OS packages) or **enhanced** scanning through Amazon Inspector (OS and language packages, on push and continuously as new CVEs appear) ([GuardDuty, Security Hub and Inspector](security-services.md)).
@@ -95,3 +95,4 @@ flowchart TD
 - [ECR User Guide: image scanning](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
 - [ECR User Guide: lifecycle policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html)
 - [ECR User Guide: pull-through cache](https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html)
+- [Lambda Developer Guide: container images and ECR permissions](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
