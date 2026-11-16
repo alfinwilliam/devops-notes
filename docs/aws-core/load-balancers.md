@@ -222,7 +222,7 @@ ALBs and NLBs are the front door in [One request, end to end](../start/request-p
 ## Sources
 
 - [Elastic Load Balancing documentation: Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
-- [Elastic Load Balancing documentation: listener rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html)
+- [Elastic Load Balancing documentation: listener rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-rules.html)
 - [Elastic Load Balancing documentation: target group health checks](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html)
 - [Elastic Load Balancing documentation: troubleshoot Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 - [Elastic Load Balancing documentation: Network Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html)
