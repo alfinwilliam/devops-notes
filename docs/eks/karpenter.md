@@ -91,9 +91,10 @@ Karpenter removes or replaces nodes in two ways:
 
 | Kind | Methods | Respects NodePool budgets | Respects PDBs and `do-not-disrupt` |
 |---|---|---|---|
-| **Graceful** (voluntary) | Drift, consolidation (and node repair, if enabled) | Yes | Yes; replacement launched first when needed |
+| **Graceful** (voluntary) | Drift, consolidation | Yes | Yes; replacement launched first when needed |
 | **Forceful** | Expiration, Spot interruption, node deletion | No | PDBs only, and only until the termination grace period |
 
+- **Node auto repair**, when enabled, follows its own rules: it replaces unhealthy nodes without waiting for budgets or `do-not-disrupt`, and stops if too many nodes in a pool are unhealthy at once.
 - **Consolidation**: `WhenEmpty` removes only nodes with no workload pods; `WhenEmptyOrUnderutilized` also removes or replaces underused nodes with cheaper ones; `Balanced` considers the same nodes but only acts when the saving is worth the disruption. `consolidateAfter` waits after pod changes before acting.
 - **Drift**: a node whose NodePool or EC2NodeClass no longer matches it (new AMI, changed requirements) is replaced. This is how node upgrades happen ([EKS upgrades](upgrades.md)).
 - **Expiration**: `expireAfter` (for example 720h) retires nodes older than that, whatever their state; changing it drifts existing nodes.
