@@ -56,6 +56,8 @@ For a typo, the pencil icon at the top of every page on the site opens the file 
 
 To add a whole section, make the folder with a `README.md` in it and copy an existing section's block in `nav:`.
 
+To remove a page, undo the same three things: delete the file, delete its line under `nav:` in `mkdocs.yml`, and delete its link from the section's `README.md`. Then search for other pages that link to it (`grep -rn '<page>.md' docs`) and run `./tools/check.sh`, which fails on any link left pointing at it.
+
 ## 5. Verify a page
 
 A page is `draft` or `reviewed` until you have checked it yourself. To make it `verified`:
