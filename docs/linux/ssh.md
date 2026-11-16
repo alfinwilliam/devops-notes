@@ -315,7 +315,7 @@ SSH is the front door to every server, and the same trust model comes back elsew
 
 ## Sources
 
-- [OpenSSH manual pages: ssh, sshd, ssh_config, sshd_config, ssh-keygen](https://www.openssh.com/manual.html)
+- [OpenSSH manual pages: ssh, sshd, ssh_config, sshd_config, ssh-keygen](https://www.openssh.org/manual.html)
 - [ssh(1) manual page](https://man.openbsd.org/ssh)
 - [sshd(8) manual page: authorized_keys and StrictModes](https://man.openbsd.org/sshd)
 - [ssh_config(5) manual page: ProxyJump](https://man.openbsd.org/ssh_config)

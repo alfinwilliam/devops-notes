@@ -258,5 +258,5 @@ Packages are how software gets onto servers and into container images, so the sa
 - [dpkg(1) manual page](https://man7.org/linux/man-pages/man1/dpkg.1.html)
 - [apt_preferences(5): pinning](https://manpages.ubuntu.com/manpages/noble/man5/apt_preferences.5.html)
 - [sources.list(5): the deb822 sources format and Signed-By](https://manpages.ubuntu.com/manpages/noble/man5/sources.list.5.html)
-- [Ubuntu Server documentation: package management](https://documentation.ubuntu.com/server/how-to/software/package-management/)
+- [Ubuntu Server documentation: package management](https://ubuntu.com/server/docs/how-to/software/package-management/)
 - [dnf documentation](https://dnf.readthedocs.io/en/latest/command_ref.html)

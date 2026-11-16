@@ -148,6 +148,7 @@ Both fail closed: if the scanner or Docker is missing, the commit or push is blo
 |---|---|
 | `ip-or-cidr`, `12-digit-number`, `aws-resource-id`, `uuid`, `long-id`, `email` | Replace the value with an example value from `STYLE.md`. |
 | `secret-assignment`, `high-entropy`, `jwt`, `token` | Replace it with `changeme` or a placeholder such as `<your-token>`. |
+| `high-entropy` on a documentation link (for example an S3 user guide page whose name is one long CamelCase word) | A false positive: the path mixes upper case, lower case and a digit (the `AmazonS3` part) with one segment longer than 14 characters. Link an equivalent page whose last segment is short or hyphenated (`notification-how-to-event-types-and-destinations.html`), or the product page. |
 | `domain`, for a public documentation site | Add the exact hostname as a new line in `~/Documents/Prep/denylist/allow.txt`. |
 | `deny:...` | The line contains a term that must not be published. Reword it in general terms. Never add it to `allow.txt`. |
 

@@ -269,4 +269,4 @@ Roles and STS are how every non-human workload in AWS gets access: instances, fu
 - [IAM documentation: granting a user permissions to pass a role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
 - [IAM documentation: the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)
 - [IAM documentation: using an IAM role to grant permissions to applications on EC2 instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html)
-- [IAM documentation: service-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html)
+- [IAM documentation: service-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create-service-linked-role.html)

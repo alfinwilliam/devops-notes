@@ -309,4 +309,4 @@ Every higher protocol rides on this: HTTP and TLS over TCP, DNS over UDP, HTTP/3
 - [ss(8) manual page](https://man7.org/linux/man-pages/man8/ss.8.html)
 - [tcp(7) manual page](https://man7.org/linux/man-pages/man7/tcp.7.html)
 - [Linux kernel documentation: ip-sysctl, ip_local_port_range](https://docs.kernel.org/networking/ip-sysctl.html)
-- [IANA: service name and port number registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
+- [IANA: service name and port number registry](https://www.iana.org/assignments/service-names-port-numbers)
