@@ -313,10 +313,10 @@ HTTP is the top of the stack for most of what you run: load balancers, Ingress c
 
 ## Sources
 
-- [RFC 9110: HTTP semantics, methods and status codes](https://www.rfc-editor.org/rfc/rfc9110)
-- [RFC 9112: HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112)
-- [RFC 9113: HTTP/2](https://www.rfc-editor.org/rfc/rfc9113)
-- [RFC 9114: HTTP/3](https://www.rfc-editor.org/rfc/rfc9114)
+- [RFC 9110: HTTP semantics, methods and status codes](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9112: HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html)
+- [RFC 9113: HTTP/2](https://www.rfc-editor.org/rfc/rfc9113.html)
+- [RFC 9114: HTTP/3](https://www.rfc-editor.org/rfc/rfc9114.html)
 - [MDN: HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
 - [MDN: Cross-origin resource sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
 - [curl documentation: the --write-out option](https://curl.se/docs/manpage.html)

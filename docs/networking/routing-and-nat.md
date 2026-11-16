@@ -309,8 +309,8 @@ The same decisions happen in every cloud network: VPC route tables, NAT gateways
 ## Sources
 
 - [ip-route(8) manual page](https://man7.org/linux/man-pages/man8/ip-route.8.html)
-- [RFC 1812: requirements for IP version 4 routers](https://www.rfc-editor.org/rfc/rfc1812)
-- [RFC 3022: traditional IP network address translator](https://www.rfc-editor.org/rfc/rfc3022)
+- [RFC 1812: requirements for IP version 4 routers](https://www.rfc-editor.org/rfc/rfc1812.html)
+- [RFC 3022: traditional IP network address translator](https://www.rfc-editor.org/rfc/rfc3022.html)
 - [iptables-extensions(8): MASQUERADE, SNAT and DNAT targets](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html)
 - [conntrack(8) manual page](https://manpages.ubuntu.com/manpages/noble/man8/conntrack.8.html)
 - [traceroute(8) manual page](https://man7.org/linux/man-pages/man8/traceroute.8.html)

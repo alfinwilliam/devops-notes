@@ -272,9 +272,9 @@ Address plans are the foundation of every VPC, subnet, security group rule and c
 
 ## Sources
 
-- [RFC 4632: Classless Inter-Domain Routing (CIDR)](https://www.rfc-editor.org/rfc/rfc4632)
-- [RFC 1918: Address allocation for private internets](https://www.rfc-editor.org/rfc/rfc1918)
-- [RFC 6598: Shared address space, 100.64.0.0/10](https://www.rfc-editor.org/rfc/rfc6598)
+- [RFC 4632: Classless Inter-Domain Routing (CIDR)](https://www.rfc-editor.org/rfc/rfc4632.html)
+- [RFC 1918: Address allocation for private internets](https://www.rfc-editor.org/rfc/rfc1918.html)
+- [RFC 6598: Shared address space, 100.64.0.0/10](https://www.rfc-editor.org/rfc/rfc6598.html)
 - [Python documentation: the ipaddress module](https://docs.python.org/3/library/ipaddress.html)
 - [Amazon VPC documentation: subnet CIDR blocks and reserved addresses](https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html)
 - [Terraform documentation: cidrsubnet function](https://developer.hashicorp.com/terraform/language/functions/cidrsubnet)

@@ -303,9 +303,9 @@ Every higher protocol rides on this: HTTP and TLS over TCP, DNS over UDP, HTTP/3
 
 ## Sources
 
-- [RFC 9293: Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293)
-- [RFC 768: User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768)
-- [RFC 9000: QUIC](https://www.rfc-editor.org/rfc/rfc9000)
+- [RFC 9293: Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293.html)
+- [RFC 768: User Datagram Protocol](https://www.rfc-editor.org/rfc/rfc768.html)
+- [RFC 9000: QUIC](https://www.rfc-editor.org/rfc/rfc9000.html)
 - [ss(8) manual page](https://man7.org/linux/man-pages/man8/ss.8.html)
 - [tcp(7) manual page](https://man7.org/linux/man-pages/man7/tcp.7.html)
 - [Linux kernel documentation: ip-sysctl, ip_local_port_range](https://docs.kernel.org/networking/ip-sysctl.html)

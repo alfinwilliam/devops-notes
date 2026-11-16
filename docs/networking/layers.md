@@ -241,9 +241,9 @@ Every later networking page fills in one layer: [IP addresses and subnetting](ip
 
 ## Sources
 
-- [RFC 1122: Requirements for internet hosts, communication layers](https://www.rfc-editor.org/rfc/rfc1122)
-- [RFC 826: the Address Resolution Protocol](https://www.rfc-editor.org/rfc/rfc826)
-- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791)
+- [RFC 1122: Requirements for internet hosts, communication layers](https://www.rfc-editor.org/rfc/rfc1122.html)
+- [RFC 826: the Address Resolution Protocol](https://www.rfc-editor.org/rfc/rfc826.html)
+- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791.html)
 - [ip(8) manual page](https://man7.org/linux/man-pages/man8/ip.8.html)
 - [MDN: An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
 - [tcpdump(1) manual page](https://www.tcpdump.org/manpages/tcpdump.1.html)

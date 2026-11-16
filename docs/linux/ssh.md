@@ -319,5 +319,5 @@ SSH is the front door to every server, and the same trust model comes back elsew
 - [ssh(1) manual page](https://man.openbsd.org/ssh)
 - [sshd(8) manual page: authorized_keys and StrictModes](https://man.openbsd.org/sshd)
 - [ssh_config(5) manual page: ProxyJump](https://man.openbsd.org/ssh_config)
-- [RFC 4253: the SSH transport layer protocol](https://www.rfc-editor.org/rfc/rfc4253)
+- [RFC 4253: the SSH transport layer protocol](https://www.rfc-editor.org/rfc/rfc4253.html)
 - [AWS Systems Manager: Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)

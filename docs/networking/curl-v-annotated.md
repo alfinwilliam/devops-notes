@@ -309,6 +309,6 @@ The third command connects to github.com but asks for `wrong.example.com`, so th
 
 - [curl manual page](https://curl.se/docs/manpage.html)
 - [Everything curl: verbose output](https://everything.curl.dev/usingcurl/verbose/)
-- [RFC 8446: TLS 1.3 handshake messages](https://www.rfc-editor.org/rfc/rfc8446)
-- [RFC 7301: TLS application-layer protocol negotiation (ALPN)](https://www.rfc-editor.org/rfc/rfc7301)
-- [RFC 9113: HTTP/2](https://www.rfc-editor.org/rfc/rfc9113)
+- [RFC 8446: TLS 1.3 handshake messages](https://www.rfc-editor.org/rfc/rfc8446.html)
+- [RFC 7301: TLS application-layer protocol negotiation (ALPN)](https://www.rfc-editor.org/rfc/rfc7301.html)
+- [RFC 9113: HTTP/2](https://www.rfc-editor.org/rfc/rfc9113.html)

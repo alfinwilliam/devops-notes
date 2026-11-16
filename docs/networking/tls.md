@@ -288,10 +288,10 @@ TLS sits under almost everything: HTTPS, database connections, the Kubernetes AP
 
 ## Sources
 
-- [RFC 8446: TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446)
-- [RFC 5280: X.509 certificates and certificate path validation](https://www.rfc-editor.org/rfc/rfc5280)
-- [RFC 6066: TLS extensions, including server name indication](https://www.rfc-editor.org/rfc/rfc6066)
-- [RFC 8555: ACME](https://www.rfc-editor.org/rfc/rfc8555)
+- [RFC 8446: TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446.html)
+- [RFC 5280: X.509 certificates and certificate path validation](https://www.rfc-editor.org/rfc/rfc5280.html)
+- [RFC 6066: TLS extensions, including server name indication](https://www.rfc-editor.org/rfc/rfc6066.html)
+- [RFC 8555: ACME](https://www.rfc-editor.org/rfc/rfc8555.html)
 - [OpenSSL documentation: s_client](https://docs.openssl.org/3.0/man1/openssl-s_client/)
 - [curl documentation: SSL certificate verification](https://curl.se/docs/sslcerts.html)
 - [Let's Encrypt: how it works](https://letsencrypt.org/how-it-works/)

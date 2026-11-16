@@ -360,10 +360,10 @@ DNS is the first hop of every request, as [One request, end to end](../start/req
 
 ## Sources
 
-- [RFC 1034: Domain names, concepts and facilities](https://www.rfc-editor.org/rfc/rfc1034)
-- [RFC 1035: Domain names, implementation and specification](https://www.rfc-editor.org/rfc/rfc1035)
-- [RFC 2308: Negative caching of DNS queries](https://www.rfc-editor.org/rfc/rfc2308)
-- [RFC 7766: DNS transport over TCP](https://www.rfc-editor.org/rfc/rfc7766)
+- [RFC 1034: Domain names, concepts and facilities](https://www.rfc-editor.org/rfc/rfc1034.html)
+- [RFC 1035: Domain names, implementation and specification](https://www.rfc-editor.org/rfc/rfc1035.html)
+- [RFC 2308: Negative caching of DNS queries](https://www.rfc-editor.org/rfc/rfc2308.html)
+- [RFC 7766: DNS transport over TCP](https://www.rfc-editor.org/rfc/rfc7766.html)
 - [Let's Encrypt: 6-day and IP address certificates are generally available](https://letsencrypt.org/2026/01/15/6day-and-ip-general-availability)
 - [IANA: root servers](https://www.iana.org/domains/root/servers)
 - [dig manual page](https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html)

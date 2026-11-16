@@ -181,5 +181,5 @@ The walk is the same at every scale, from one server to a Kubernetes cluster beh
 - [dig manual page](https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html)
 - [ip-route(8) manual page](https://man7.org/linux/man-pages/man8/ip-route.8.html)
 - [curl manual page](https://curl.se/docs/manpage.html)
-- [RFC 9110: HTTP status codes](https://www.rfc-editor.org/rfc/rfc9110)
+- [RFC 9110: HTTP status codes](https://www.rfc-editor.org/rfc/rfc9110.html)
 - [Google SRE book: effective troubleshooting](https://sre.google/sre-book/effective-troubleshooting/)

@@ -264,5 +264,5 @@ On a server, logs come through the journal and `/var/log`; in a cluster, the sam
 - [journalctl(1) manual page](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html)
 - [journald.conf(5): journal storage](https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html)
 - [logrotate(8) manual page](https://man7.org/linux/man-pages/man8/logrotate.8.html)
-- [RFC 5424: the syslog protocol and severity levels](https://www.rfc-editor.org/rfc/rfc5424)
+- [RFC 5424: the syslog protocol and severity levels](https://www.rfc-editor.org/rfc/rfc5424.html)
 - [tail(1) manual page](https://man7.org/linux/man-pages/man1/tail.1.html)

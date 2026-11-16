@@ -318,5 +318,5 @@ Load balancing appears at every layer you will run: cloud load balancers in fron
 - [Nginx documentation: ngx_http_upstream_module, including zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html)
 - [Nginx documentation: ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)
 - [MDN: X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
-- [RFC 9110: HTTP semantics, status codes 502, 503, 504](https://www.rfc-editor.org/rfc/rfc9110)
+- [RFC 9110: HTTP semantics, status codes 502, 503, 504](https://www.rfc-editor.org/rfc/rfc9110.html)
 - [Elastic Load Balancing documentation: target group health checks](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html)
