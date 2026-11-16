@@ -11,7 +11,7 @@ commands: container
 
 ## In one line
 
-Every host and router picks where to send a packet by the most specific matching route in its route table, falling back to the default route; each router repeats that decision one hop at a time. NAT rewrites addresses on the way through, which is how private addresses reach the internet, and the reply has to come back through the same device.
+Each router sends a packet by the most specific matching route, else the default route, one hop at a time. NAT rewrites addresses on the way through so private hosts can reach the internet; replies must return through the same device.
 
 ## The plain idea
 
