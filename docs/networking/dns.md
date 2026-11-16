@@ -31,7 +31,7 @@ DNS happens before everything else. There is no TCP connection, no TLS and no HT
 |---|---|---|
 | **Stub resolver** | A library inside your operating system | Sends one question to the configured resolver and waits for a complete answer. It does no walking. |
 | **Recursive resolver** | Your router, your provider, your cloud network, or a public one such as `1.1.1.1` | Walks the tree on your behalf and caches what it learns. |
-| **Root servers** | 13 named server addresses, `a` to `m`, each served from many locations | Know which servers handle each top-level domain (`.com`, `.org`, `.in`). |
+| **Root servers** | 13 named servers, `a` to `m`, each served from many locations | Know which servers handle each top-level domain (`.com`, `.org`, `.in`). |
 | **TLD servers** | Run by each top-level domain's registry | Know which servers are in charge of each domain under them. |
 | **Authoritative servers** | Run by the domain's owner or their DNS provider | Hold the domain's real records and give the final answer. |
 
@@ -74,7 +74,7 @@ The question from your machine is a **recursive query**: "do all the work and gi
 | `AAAA` | An IPv6 address | |
 | `CNAME` | Another name | An alias. A name with a CNAME can have no other records, which is why the top of a zone (`example.com` itself) cannot be one. |
 | `NS` | The name servers for a zone | This is what a referral is made of. |
-| `SOA` | The zone's administrative record | One per zone. Its last field sets how long "no such name" is cached. |
+| `SOA` | The zone's administrative record | One per zone. Its last field (MINIMUM), capped by the SOA's own TTL, sets how long "no such name" is cached. |
 | `MX` | Mail servers, with a priority | |
 | `TXT` | Free text | Used for domain-ownership proofs and mail policy. |
 | `PTR` | A name, from an address | The reverse lookup. |
@@ -124,8 +124,8 @@ Step 6 is why two people can see different results for the same name at the same
 ## Why not just...?
 
 - **...put every name in `/etc/hosts`?** It works on one machine. With a hundred machines you have a hundred files to edit every time an address changes, and one stale line sends traffic to the wrong place with no error.
-- **...use IP addresses and skip names?** Addresses change: load balancers scale, failovers move, cloud resources are replaced. TLS certificates are issued for names, not addresses. One address often serves many sites and picks between them by the name in the request.
-- **...set every TTL to 0 so changes are instant?** Then every single request pays for a full lookup, and your authoritative servers carry all of that load. Some resolvers enforce a minimum anyway. Choose a TTL by how quickly you need to move, and lower it ahead of a planned change.
+- **...use IP addresses and skip names?** Addresses change: load balancers scale, failovers move, cloud resources are replaced. TLS certificates are usually issued for names; IP address certificates exist, but Let's Encrypt issues them only as short-lived certificates (as of November 2026). One address often serves many sites and picks between them by the name in the request.
+- **...set every TTL to 0 so changes are instant?** Then every single request pays for a full lookup, and your authoritative servers carry all of that load. Some resolvers enforce a minimum anyway (unverified). Choose a TTL by how quickly you need to move, and lower it ahead of a planned change.
 
 ## Commands to know
 
@@ -265,7 +265,7 @@ $ dig @203.0.113.1 example.com A +time=2 +tries=1
 <details markdown="1">
 <summary>Answer</summary>
 
-- It does the resolver's job itself, without using a cache.
+- It does the resolver's job itself. Only its first query, for the list of root servers, goes to your usual resolver.
 - It asks a root server and gets a referral to the `.com` servers.
 - It asks a `.com` server and gets a referral to the domain's authoritative servers.
 - It asks an authoritative server and gets the final records.
@@ -369,6 +369,7 @@ DNS is the first hop of every request, as [One request, end to end](../start/req
 - [RFC 1035: Domain names, implementation and specification](https://www.rfc-editor.org/rfc/rfc1035)
 - [RFC 2308: Negative caching of DNS queries](https://www.rfc-editor.org/rfc/rfc2308)
 - [RFC 7766: DNS transport over TCP](https://www.rfc-editor.org/rfc/rfc7766)
+- [Let's Encrypt: 6-day and IP address certificates are generally available](https://letsencrypt.org/2026/01/15/6day-and-ip-general-availability)
 - [IANA: root servers](https://www.iana.org/domains/root/servers)
 - [dig manual page](https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html)
 - [resolv.conf manual page](https://man7.org/linux/man-pages/man5/resolv.conf.5.html)
