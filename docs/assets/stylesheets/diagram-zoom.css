@@ -1,0 +1,95 @@
+/* Click-to-enlarge viewer for diagrams. Colours come from the theme's own variables, so light and dark mode both work. */
+
+.md-typeset .diagram-zoomable {
+  cursor: zoom-in;
+}
+
+.md-typeset .diagram-zoomable:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 4px;
+}
+
+.md-typeset .diagram-hint {
+  margin: 0.2em 0 1em;
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+}
+
+html.diagram-overlay-open {
+  overflow: hidden;
+}
+
+.diagram-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  background: var(--md-default-bg-color);
+}
+
+.diagram-overlay.is-open {
+  display: flex;
+}
+
+.diagram-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.75rem;
+}
+
+.diagram-toolbar button {
+  min-width: 2.4rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  cursor: pointer;
+}
+
+.diagram-toolbar button:hover,
+.diagram-toolbar button:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.diagram-help {
+  margin-left: 0.5rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.diagram-close {
+  margin-left: auto;
+}
+
+.diagram-stage {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  padding: 1rem;
+  cursor: grab;
+}
+
+.diagram-stage.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* margin: auto centres a small diagram, and still lets a large one scroll to every edge. */
+.diagram-stage > svg {
+  flex: none;
+  margin: auto;
+}
+
+@media (max-width: 40em) {
+  .diagram-help {
+    display: none;
+  }
+}

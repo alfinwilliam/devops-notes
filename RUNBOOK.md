@@ -125,6 +125,8 @@ Diagrams are text, in a code fence marked `mermaid`. The rules in `STYLE.md` kee
 
 To fix a broken one, paste it into `https://mermaid.live`, which shows the error as you type. Then run `python3 tools/check_page.py --mermaid <file>`.
 
+On the site, every diagram can be clicked (or focused and opened with Enter) to view it full screen, with zoom and drag. That viewer is two small files, `docs/assets/javascripts/diagram-zoom.js` and `docs/assets/stylesheets/diagram-zoom.css`, registered under `extra_javascript` and `extra_css` in `mkdocs.yml`. It re-draws the diagram from its source text with the same Mermaid library the page already loads, so it needs no maintenance of its own. If a theme upgrade ever breaks it, remove those two lines from `mkdocs.yml`: the diagrams still show, just without the enlarge feature.
+
 ## 9. Confidentiality scan
 
 This repo is public. Nothing in it may identify a former employer, its products, customers or people, and nothing may look like a real account id, address, hostname or secret. Write from general knowledge, with the example values in `STYLE.md`.

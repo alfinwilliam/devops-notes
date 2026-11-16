@@ -43,6 +43,13 @@ theme:
 plugins:
   - search
 
+extra_css:
+  - assets/stylesheets/diagram-zoom.css
+
+extra_javascript:
+  - assets/javascripts/diagram-zoom.js
+
+
 markdown_extensions:
   - md_in_html
   - tables
