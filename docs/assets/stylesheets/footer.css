@@ -1,0 +1,7 @@
+/* The "By Alfin William" link in the footer. Material shows footer links in the same colour
+   as the text around them, so without an underline nobody can tell it is a link. */
+
+.md-copyright__highlight a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}

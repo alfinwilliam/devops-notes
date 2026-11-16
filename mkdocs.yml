@@ -7,7 +7,7 @@ repo_url: https://github.com/alfinwilliam/devops-notes
 repo_name: alfinwilliam/devops-notes
 edit_uri: edit/main/docs/
 docs_dir: docs
-copyright: Personal study notes. A page marked "AI draft" has not been verified yet; check it against its sources.
+copyright: 'By <a href="https://alfinwilliam.github.io/">Alfin William</a>. Personal study notes. A page marked "AI draft" has not been verified yet; check it against its sources.'
 
 theme:
   name: material
@@ -45,6 +45,7 @@ plugins:
 
 extra_css:
   - assets/stylesheets/diagram-zoom.css
+  - assets/stylesheets/footer.css
 
 extra_javascript:
   - assets/javascripts/diagram-zoom.js
