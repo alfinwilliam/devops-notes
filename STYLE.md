@@ -144,7 +144,10 @@ The same file must render on the site and on github.com.
 - Node ids are plain letters and digits. Every node label is in double quotes: `A["Recursive resolver"]`. Edge labels too: `A -->|"asks"| B`.
 - Inside a label: no double quotes, no backticks, no `{{` or `}}`, no `#`, no `;`.
 - Prefer `flowchart TD` (top to bottom) for a chain of more than four steps: a long `LR` chain is shrunk to fit the column and its text becomes hard to read. Readers can click any diagram to enlarge it, but it should be readable without that.
-- At most 12 nodes, or 6 participants. No styling (`classDef`, `style`, `linkStyle`), no `click`, at most one level of `subgraph`.
+- At most 12 nodes. A sequence diagram has at most 3 participants: each one takes about 150px, so four or more cannot fit the column. For more parties, draw a `flowchart TD` with numbered edge labels instead.
+- Keep labels short. Wrap a long node label, sequence message or note onto two lines with `<br/>`, for example `C->>S: SYN<br/>my first sequence number is x`.
+- **The width rule.** `python3 tools/check_page.py --mermaid <page>` renders every diagram and fails any wider than 800px, because the page column is about 760px and anything wider is shrunk until its text is hard to read. Fix a failure with `flowchart TD`, fewer side-by-side branches, shorter labels or `<br/>`. Readers can also click a diagram to enlarge it, but every diagram must be readable without that.
+- No styling (`classDef`, `style`, `linkStyle`), no `click`, at most one level of `subgraph`.
 - The diagram must agree with the text: same names, same order.
 
 ## Links and sources

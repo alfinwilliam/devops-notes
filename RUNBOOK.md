@@ -84,6 +84,7 @@ grep -rh '^status:' docs --include='*.md' | sort | uniq -c
 | `missing section '## ...'` | A required heading is absent or misspelled. | Use the exact heading from `STYLE.md`. |
 | `each question needs one hidden answer` | A question lacks its `<details>` block, or the blank lines are missing. | Copy the question pattern from `templates/page.md`. |
 | `a Mermaid diagram does not parse` | Diagram syntax error. | Section 8. |
+| `diagram is ...px wide` | The diagram would be shrunk to fit the column, making its text too small. | Use `flowchart TD`, shorter labels, or `<br/>` to wrap a long label (STYLE.md, Diagrams). |
 | `link target does not exist` | A relative link points at a file that is not there. | Fix the path. Links are relative to the page's own folder. |
 | Lint: `MD031` or `MD032` | No blank line before or after a code fence or a list. | Add the blank line. |
 | Lint: `MD007` | A nested list item is not indented by 4 spaces. | Indent it by 4. |
