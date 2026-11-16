@@ -209,7 +209,7 @@ These were not run for this page.
 No free EKS lab, so work it on paper:
 
 1. Look up two instance types in the EC2 documentation (network interfaces and IPv4 addresses per interface) and compute maxPods for each with the formula.
-2. A subnet is a `/24` (251 usable addresses in AWS, since AWS reserves 5 per subnet). With `WARM_ENI_TARGET=1` and 10 addresses per ENI, how many nodes can join before pods run out of addresses, if each node runs 12 pods?
+2. A subnet is a `/24` (251 usable addresses in AWS, since AWS reserves 5 per subnet). With `WARM_ENI_TARGET=1` and 10 addresses per ENI, how many nodes can join before pods run out of addresses, if each node runs 12 pods? (Answer: each ENI gives 9 pod addresses, so 12 pods fill one ENI and part of a second, and a third is kept warm: 3 ENIs of 10 addresses, 30 per node, so 8 nodes.)
 3. Draw the "How this changes the usual picture" table from memory.
 
 ## Zoom out
