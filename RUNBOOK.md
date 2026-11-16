@@ -91,6 +91,7 @@ grep -rh '^status:' docs --include='*.md' | sort | uniq -c
 | Build: `not included in the "nav"` | The page is not registered. | Section 4, step 3. |
 | Build: `contains a link ... not found` | A broken link between pages. | Fix the path. |
 | Links: a 404 | The page moved. | Find its new address, or remove the link. |
+| `AWS documentation links that silently redirect` lists a link | That AWS page does not exist; AWS redirects missing pages to the guide's index instead of showing a 404. | Search the AWS documentation for the page's new address. |
 
 Only the strict build runs in GitHub Actions. The other checks are for you.
 

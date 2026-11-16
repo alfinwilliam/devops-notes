@@ -36,6 +36,16 @@ if [ "${1:-}" = "--links" ]; then
     --no-progress --max-concurrency 6 --max-retries 2 --timeout 30 \
     --accept '200..=299,403,429' --exclude 'localhost' --exclude 'example\.(com|org|net)' \
     /input/docs /input/review || fail=1
+
+  step "extra: AWS documentation links that silently redirect"
+  # docs.aws.amazon.com answers a page that does not exist with a redirect to the guide's index,
+  # which a normal link checker counts as a success. A real page answers 200 directly.
+  bad=0
+  while read -r url; do
+    code=$(curl -s -o /dev/null -m 25 -w "%{http_code}" "$url")
+    if [ "$code" != "200" ]; then echo "  $code $url"; bad=1; fi
+  done < <(grep -rhoE '\]\(https://docs\.aws\.amazon\.com/[^) ]+\)' docs --include='*.md' | sed -E 's/^\]\(//; s/\)$//' | sort -u)
+  [ "$bad" -eq 0 ] && echo "  all AWS documentation links load directly" || fail=1
 fi
 
 echo
