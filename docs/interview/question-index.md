@@ -11,7 +11,7 @@ commands: none
 
 ## In one line
 
-Every interview question in these notes, 492 of them across 77 pages, grouped by section. Answer from memory, then open the page and compare with the hidden answer.
+Every interview question in these notes, 1024 of them across 165 pages, grouped by section. Answer from memory, then open the page and compare with the hidden answer.
 
 ## How to drill with this page
 
@@ -487,6 +487,221 @@ Every interview question in these notes, 492 of them across 77 pages, grouped by
 5. Why does a timeout point to different causes than "connection refused" inside a VPC?
 6. Two VPCs are peered, but an application in one cannot reach a database in the other. List the places to check.
 
+## AWS services
+
+
+**[EC2](../aws-services/ec2.md)**
+
+1. What is the difference between stopping and terminating an instance?
+2. Why use IMDSv2, and what does the hop limit do?
+3. How do you get shell access without SSH keys?
+4. When would you choose Graviton instances?
+5. What do system and instance status check failures mean?
+6. A T-family instance becomes slow every afternoon. Why?
+
+**[Auto Scaling and AMIs](../aws-services/auto-scaling-and-amis.md)**
+
+1. What is the difference between an AMI and a launch template?
+2. EC2 vs load balancer health checks in an Auto Scaling group?
+3. Which scaling policy would you choose and why?
+4. How do you roll out a new AMI to a running group without downtime?
+5. Golden images or bootstrapping?
+6. An Auto Scaling group keeps replacing instances every few minutes. What do you check?
+
+**[EBS](../aws-services/ebs.md)**
+
+1. What is EBS and how is it different from instance store?
+2. gp3 vs io2 vs st1?
+3. How do you grow a volume without downtime?
+4. How do snapshots work, and how are they used for DR?
+5. Why can a pod's volume not follow it to another zone?
+6. A database volume is slow. How do you investigate?
+
+**[EFS](../aws-services/efs.md)**
+
+1. When would you choose EFS over EBS?
+2. What is a mount target and what does it need?
+3. What is an EFS access point for?
+4. An EFS mount hangs from a new node group. What do you check?
+5. Elastic, Provisioned or Bursting throughput?
+6. How do you reduce EFS storage cost?
+
+**[S3](../aws-services/s3.md)**
+
+1. What consistency does S3 provide today?
+2. A user deleted an important file from a versioned bucket. How do you recover it?
+3. How do you cut the S3 bill for a bucket that keeps growing?
+4. How would you let browsers upload large files without passing them through your servers?
+5. What does replication need, and what does it not do by default?
+6. Why serve a static site through CloudFront instead of the S3 website endpoint?
+7. What is a presigned URL, and what limits it?
+8. Your Lambda, triggered by S3 uploads, is processing some files twice. Why, and what do you do?
+
+**[S3 security](../aws-services/s3-security.md)**
+
+1. Walk through how S3 decides whether a request is allowed.
+2. A role in another account gets `AccessDenied` reading your bucket. What do you check?
+3. SSE-S3 or SSE-KMS: which and why?
+4. How do you make sure a bucket is never reached over plain HTTP?
+5. How would you protect backups from deletion by ransomware or a compromised admin?
+6. How do you find public or shared buckets across an account?
+7. Governance mode versus compliance mode in Object Lock?
+8. What is the difference between CloudTrail data events and S3 server access logs?
+
+**[RDS and Aurora](../aws-services/rds-and-aurora.md)**
+
+1. Multi-AZ versus read replica: what is each for?
+2. Someone dropped a table at 14:05. How do you recover?
+3. Explain Aurora's architecture and why failover is fast.
+4. Lambda functions keep hitting "too many connections" on RDS. What do you do?
+5. How does an app survive a database failover?
+6. You changed `shared_buffers` and nothing happened. Why?
+7. How would you do a major version upgrade with little downtime?
+
+**[SQS, SNS and EventBridge](../aws-services/messaging.md)**
+
+1. Queue, topic or event bus: when do you use which?
+2. What is the visibility timeout, and what goes wrong if it is too short?
+3. How do you make a consumer idempotent?
+4. Explain the SNS to SQS fan-out pattern and why it is common.
+5. Messages are landing in the DLQ. Walk me through it.
+6. Standard or FIFO queue?
+7. An EventBridge rule is not triggering its Lambda. What do you check?
+
+**[KMS, Secrets Manager and Parameter Store](../aws-services/kms-and-secrets.md)**
+
+1. Explain envelope encryption.
+2. How do key policies and IAM policies interact?
+3. Secrets Manager or Parameter Store?
+4. What happens when a KMS key is rotated, and when it is deleted?
+5. How does a rotated database password reach running applications without an outage?
+6. A team wants to share an encrypted S3 bucket with another account. What must change on the KMS side?
+7. How do you keep secrets out of logs and repositories?
+
+**[CloudWatch](../aws-services/cloudwatch.md)**
+
+1. What uniquely identifies a CloudWatch metric?
+2. Why can't you see memory usage for an EC2 instance by default, and how do you fix it?
+3. Explain alarm evaluation: period, evaluation periods, datapoints to alarm and missing data.
+4. Your CloudWatch bill doubled. Where do you look?
+5. How do you get application logs from CloudWatch into OpenSearch or S3?
+6. What is the embedded metric format and when is it useful?
+7. How would you alert on errors that only appear in logs?
+
+**[CloudTrail, Athena and Config](../aws-services/cloudtrail-and-config.md)**
+
+1. Someone deleted an S3 bucket last night. How do you find out who?
+2. Management versus data events?
+3. How do you protect CloudTrail logs from tampering?
+4. How do you query months of CloudTrail logs efficiently?
+5. What does AWS Config give you that CloudTrail does not?
+6. You get `AccessDenied` in an app. How can CloudTrail help?
+7. What would you alarm on from CloudTrail?
+
+**[GuardDuty, Security Hub and Inspector](../aws-services/security-services.md)**
+
+1. What is the difference between GuardDuty, Inspector and Security Hub?
+2. GuardDuty reports an EC2 instance communicating with a known malicious IP. What do you do?
+3. How do you prioritise 500 critical CVE findings?
+4. When is it acceptable to suppress a finding?
+5. How do you run these across 50 accounts?
+6. Why might a CSPM control show failed even though the resource is fine?
+
+**[Systems Manager](../aws-services/systems-manager.md)**
+
+1. Why use Session Manager instead of SSH?
+2. An instance does not appear in Systems Manager. How do you debug it?
+3. How do you patch 500 instances safely?
+4. How would you reach a private RDS database from your laptop without a bastion?
+5. What are concurrency and error thresholds in Run Command for?
+6. What is in an SSM document, and give examples.
+
+**[ECR](../aws-services/ecr.md)**
+
+1. Pods on EKS show `ImagePullBackOff` with an ECR image. What do you check?
+2. How does CI push to ECR without long-lived keys?
+3. Why turn on tag immutability, and what is the catch?
+4. The ECR bill keeps growing. What do you do?
+5. Why use a pull-through cache for public base images?
+
+## Serverless and Fargate
+
+
+**[Lambda](../serverless/lambda.md)**
+
+1. Explain a Lambda cold start and how to reduce it.
+2. What are reserved and provisioned concurrency?
+3. Compare synchronous, asynchronous and event source mapping invocations.
+4. How do you deploy a new Lambda version safely?
+5. Why might more memory make a function cheaper?
+6. A Lambda behind SQS keeps reprocessing the same messages and the queue grows. What do you check?
+
+**[Lambda networking and permissions](../serverless/lambda-networking-and-permissions.md)**
+
+1. What is the difference between a Lambda execution role and its resource-based policy?
+2. A Lambda in a VPC times out calling S3. Why, and how do you fix it?
+3. Does putting a Lambda in a public subnet give it internet access?
+4. How should a Lambda function get a database password?
+5. How do you let only one S3 bucket invoke a function?
+6. When should a Lambda function be attached to a VPC?
+
+**[API Gateway](../serverless/api-gateway.md)**
+
+1. REST API or HTTP API?
+2. What authorizer options are there?
+3. A client gets "Missing Authentication Token". What is wrong?
+4. A Lambda-backed API returns 502. What do you check?
+5. How do you handle an operation that takes two minutes?
+6. How do you protect an API from one noisy client?
+
+**[ECS and Fargate](../serverless/ecs-and-fargate.md)**
+
+1. Explain cluster, task definition, task and service.
+2. What is the difference between the task execution role and the task role?
+3. What does the awsvpc network mode change?
+4. Fargate or EC2 launch type?
+5. How do ECS rolling deployments and the circuit breaker work?
+6. A new task revision never becomes healthy. How do you debug it?
+
+**[Cognito](../serverless/cognito.md)**
+
+1. What is the difference between a user pool and an identity pool?
+2. Which tokens does a user pool issue, and what is each for?
+3. How do you protect an API with Cognito?
+4. How do you give admins extra rights?
+5. Why use managed login instead of building your own sign-in form?
+
+**[Step Functions](../serverless/step-functions.md)**
+
+1. When would you use Step Functions instead of chaining Lambda functions?
+2. Standard or Express workflows?
+3. How do Retry and Catch work?
+4. How do you wait for a human approval in a workflow?
+5. What does the Map state do?
+
+## Data stores
+
+
+**[PostgreSQL for operators](../data/postgres-for-operators.md)**
+
+1. The app reports "too many clients already". What do you do now and later?
+2. New tables created by migrations are not readable by the app. Why?
+3. `pg_dump` versus physical backups?
+4. Queries are hanging. How do you find the cause?
+5. What does `sslmode=prefer` really give you?
+6. Session versus transaction pooling in PgBouncer?
+7. How would you upgrade a major PostgreSQL version with little downtime?
+
+**[Redis and caching patterns](../data/redis-and-caching.md)**
+
+1. Explain cache-aside and its failure modes.
+2. What is a cache stampede and how do you prevent it?
+3. Which eviction policy for a pure cache, and which for sessions?
+4. RDB versus AOF?
+5. Redis or Valkey versus Memcached?
+6. How does Redis Cluster split data, and what breaks?
+7. After a database update, users still see the old price. Why?
+
 ## Containers
 
 
@@ -763,3 +978,620 @@ Every interview question in these notes, 492 of them across 77 pages, grouped by
 6. `kubectl logs` shows nothing useful for a crash-looping pod. What next?
 7. A node shows `NotReady`. What happens to its pods, and what do you check?
 8. A pod works in namespace `a` but calls to `web` fail after moving it to namespace `b`. Why?
+
+## EKS
+
+
+**[EKS architecture and node options](../eks/architecture.md)**
+
+1. What does AWS manage in EKS, and what do you manage?
+2. Compare managed node groups, Fargate and Karpenter.
+3. What are the endpoint access options, and which would you choose for production?
+4. How does kubectl authenticate to EKS?
+5. What is the difference between the cluster IAM role and the node IAM role?
+6. New nodes in private subnets never join the cluster. What do you check?
+7. When would you choose EKS Auto Mode?
+
+**[Cluster access, IRSA and Pod Identity](../eks/access-and-pod-identity.md)**
+
+1. How do you give a new engineer read-only access to one namespace on EKS?
+2. Explain how IRSA works end to end.
+3. How does EKS Pod Identity differ from IRSA?
+4. Why should application permissions not go on the node IAM role?
+5. A pod gets AccessDenied calling S3. Walk through your debugging.
+6. What is the risk of an IRSA trust policy without a `sub` condition?
+7. You are migrating a cluster from `aws-auth` to access entries. What are the steps and risks?
+
+**[Networking with the VPC CNI](../eks/vpc-cni.md)**
+
+1. How does the VPC CNI give pods IP addresses?
+2. Why can a node with free CPU and memory not run more pods?
+3. What does prefix delegation change?
+4. The cluster's subnets are running out of addresses. What are your options?
+5. Why is pod traffic to the internet seen with the node's address?
+6. When would you use security groups for pods?
+
+**[AWS Load Balancer Controller](../eks/load-balancer-controller.md)**
+
+1. What does the AWS Load Balancer Controller do?
+2. Explain `target-type: ip` versus `instance`.
+3. An Ingress was applied an hour ago and still has no address. What do you check?
+4. How do you share one ALB between several Ingresses, and what is the risk?
+5. Users see 502 errors for a few seconds on every deploy. How do you fix it?
+6. What is a TargetGroupBinding for?
+
+**[EBS and EFS CSI drivers](../eks/storage.md)**
+
+1. When would you use EBS and when EFS on EKS?
+2. Why does `WaitForFirstConsumer` matter for EBS?
+3. A StatefulSet pod is stuck Pending with `volume node affinity conflict`. What happened?
+4. An EFS mount times out. What do you check?
+5. What is an EFS access point and why use one per application?
+6. How do the CSI drivers get permission to create volumes?
+
+**[Secrets from AWS into pods](../eks/secrets.md)**
+
+1. Compare the External Secrets Operator and the Secrets Store CSI driver.
+2. A secret was rotated in Secrets Manager. Will running pods see it?
+3. How do pods authenticate to Secrets Manager on EKS?
+4. Are Kubernetes Secrets encrypted on EKS?
+5. Why commit an ExternalSecret instead of a Secret to Git?
+6. An ExternalSecret shows a sync error after someone added a KMS key to the secret. What happened?
+
+**[Node autoscaling: Cluster Autoscaler vs Karpenter](../eks/cluster-autoscaler-vs-karpenter.md)**
+
+1. How does Cluster Autoscaler decide to add a node?
+2. When does Cluster Autoscaler remove a node?
+3. What is the main difference in how Karpenter adds capacity?
+4. Pods are Pending but the autoscaler does nothing. How do you investigate?
+5. Why run the autoscaler on a separate, fixed node group?
+6. A team complains their pods restart every few hours since moving to Karpenter. What is happening and what do you change?
+
+**[Karpenter in depth](../eks/karpenter.md)**
+
+1. What are NodePool, EC2NodeClass and NodeClaim?
+2. Walk through what happens when a pod is Pending in a Karpenter cluster.
+3. Explain consolidation, drift and expiration.
+4. How do you stop Karpenter from disrupting a running batch job?
+5. How does Karpenter handle Spot interruptions?
+6. Karpenter keeps logging that no instance type meets the pod's requirements. What do you check?
+7. What protects production from Karpenter replacing too many nodes at once?
+
+**[EKS upgrades](../eks/upgrades.md)**
+
+1. What is the order of an EKS upgrade?
+2. How do you find out whether workloads use APIs removed in the next version?
+3. Can you roll back an EKS upgrade?
+4. How does a managed node group update work, and what can make it fail?
+5. How do Karpenter-managed nodes get upgraded?
+6. When would you choose a blue-green cluster upgrade over in-place?
+7. Why not stay on an old version with extended support?
+
+## Helm
+
+
+**[Charts, templates and values](../helm/charts-and-templates.md)**
+
+1. What problem does Helm solve, and what is a chart?
+2. What is the order of values precedence?
+3. What is the difference between `include` and `template`?
+4. How do you debug a chart that fails with a YAML parse error?
+5. How would you make a value mandatory?
+6. How do you stop a chart's replica count fighting an HPA?
+
+**[Releases, hooks and debugging](../helm/releases-hooks-debugging.md)**
+
+1. What is a Helm release, and where is its state stored?
+2. How does `helm rollback` work, and what does it not undo?
+3. A deploy fails with "another operation is in progress". What happened and how do you fix it?
+4. How would you run a database migration with Helm?
+5. What does `--rollback-on-failure` do (formerly `--atomic`)?
+6. How do you see exactly what is deployed and with which values?
+
+**[Kustomize, and Helm vs Kustomize](../helm/kustomize-vs-helm.md)**
+
+1. What is the core idea of Kustomize?
+2. Why do generated ConfigMaps have a hash suffix?
+3. When would you choose Helm and when Kustomize?
+4. Why is `labels` preferred over `commonLabels`?
+5. A patch in the prod overlay does nothing. How do you debug it?
+6. How do you change the image tag per environment with Kustomize?
+
+## Service mesh
+
+
+**[Why a mesh, and Istio architecture](../mesh/why-a-mesh.md)**
+
+1. What problems does a service mesh solve?
+2. Explain Istio's data plane and control plane.
+3. What is xDS?
+4. Sidecar mode or ambient mode?
+5. What does a mesh cost you?
+6. When would you not use a service mesh?
+
+**[Sidecars and traffic flow](../mesh/sidecars-and-traffic-flow.md)**
+
+1. How does a sidecar get into a pod?
+2. How is traffic redirected into Envoy?
+3. Why do Service port names matter in Istio?
+4. What startup and shutdown problems do sidecars cause, and how are they solved?
+5. Describe the path of a request between two meshed pods.
+6. How would you reduce sidecar overhead in a large mesh?
+
+**[Traffic management](../mesh/traffic-management.md)**
+
+1. What do VirtualService and DestinationRule each do?
+2. How do you run a canary with Istio?
+3. What is outlier detection?
+4. What are Istio's default retries and timeouts?
+5. How do Istio resources map to Envoy configuration?
+6. A canary at 10% receives no traffic. What do you check?
+
+**[mTLS and authorization](../mesh/mesh-security.md)**
+
+1. How does Istio identify workloads?
+2. PERMISSIVE vs STRICT?
+3. How are AuthorizationPolicies evaluated?
+4. Does RequestAuthentication require a token?
+5. What does mTLS not protect you from?
+6. After switching a namespace to STRICT, a CronJob starts failing. Why?
+
+**[Mesh troubleshooting](../mesh/mesh-troubleshooting.md)**
+
+1. How do you start debugging a 503 in an Istio mesh?
+2. What does `istioctl proxy-status` tell you?
+3. What do the response flags UH, UF and NR mean?
+4. How do you tell an application error from a mesh error?
+5. What is `istioctl proxy-config` used for?
+6. A VirtualService weight change has no effect. What do you check?
+
+## Infrastructure as code
+
+
+**[Terraform workflow](../iac/terraform-workflow.md)**
+
+1. What happens during `terraform init`, `plan` and `apply`?
+2. What is the difference between a resource and a data source?
+3. How does Terraform decide the order of operations?
+4. Why commit `.terraform.lock.hcl`?
+5. Why save a plan in CI instead of running `apply` directly?
+6. A colleague changed a security group in the console. What happens on the next plan?
+
+**[Terraform state](../iac/state.md)**
+
+1. Why does Terraform need state?
+2. How do you set up remote state on AWS today?
+3. What sensitive data can end up in state, and how do you protect it?
+4. A pipeline was killed during apply and now the state is locked. What do you do?
+5. How do you rename a resource without destroying it?
+6. How would you split state for a company with several environments and teams?
+
+**[Terraform language](../iac/language.md)**
+
+1. What is the difference between `count` and `for_each`?
+2. When would you use `create_before_destroy`?
+3. What does `ignore_changes` do and what is the risk?
+4. What does `cidrsubnet("10.0.0.0/16", 8, 3)` return?
+5. Why might `for_each` fail with "known only after apply"?
+6. Does `prevent_destroy` protect a resource if someone deletes its block?
+
+**[Modules and environments](../iac/modules-and-environments.md)**
+
+1. What is a Terraform module, and what is the root module?
+2. How do you version modules, and why?
+3. Directories per environment or workspaces? Defend a choice.
+4. How do you move resources into a module without recreating them?
+5. What makes a module well designed?
+6. How would you roll out a risky change to a shared VPC module across ten accounts?
+
+**[Reading a plan](../iac/reading-a-plan.md)**
+
+1. What do `~`, `-/+` and `+/-` mean in a plan?
+2. What does `# forces replacement` tell you, and why does it matter?
+3. Why apply a saved plan file in CI?
+4. When is `-target` acceptable?
+5. How would you automatically block plans that delete databases?
+6. A plan for a tags-only change wants to replace three NAT gateways. What do you do?
+
+**[Import, moved and drift](../iac/import-and-drift.md)**
+
+1. How do you bring an existing resource under Terraform?
+2. You renamed a resource and the plan wants to destroy and recreate it. Fix it.
+3. How do you stop managing a resource without deleting it?
+4. How do you detect drift automatically?
+5. Someone changed a security group in the console during an incident. What do you do?
+6. What are the risks of `-generate-config-out`?
+
+**[Testing and CI for Terraform](../iac/testing-and-ci.md)**
+
+1. Describe a CI/CD pipeline for Terraform.
+2. Why apply a saved plan, and what if it is stale?
+3. What do TFLint, Trivy and Checkov each add over `terraform validate`?
+4. What is `terraform test` and when would you use `command = plan`?
+5. How do you make sure only reviewed code can change production?
+6. A plan in CI shows changes nobody made in this pull request. What do you do?
+
+**[Terragrunt](../iac/terragrunt.md)**
+
+1. What problem does Terragrunt solve?
+2. How do `include`, `remote_state` and `generate` work together?
+3. What are `dependency` blocks and `mock_outputs` for?
+4. How do you run Terragrunt across many units, and what changed recently?
+5. When would you not use Terragrunt?
+6. How do you promote a module change through environments with Terragrunt?
+
+**[CloudFormation and CDK vs Terraform](../iac/cloudformation-vs-terraform.md)**
+
+1. What is a CloudFormation change set, and how does it compare to a Terraform plan?
+2. What happens when a CloudFormation update fails, compared with Terraform?
+3. What does CDK add on top of CloudFormation?
+4. When would you choose Terraform over CloudFormation?
+5. How do you deploy the same infrastructure to many AWS accounts with each tool?
+
+**[Ansible and configuration management](../iac/ansible.md)**
+
+1. What is the difference between provisioning and configuration management?
+2. What does "agentless" mean for Ansible?
+3. What makes an Ansible task idempotent?
+4. What are handlers for?
+5. Where does Ansible fit in a Kubernetes and Terraform world?
+
+## CI/CD
+
+
+**[CI/CD concepts](../cicd/concepts.md)**
+
+1. What is the difference between continuous delivery and continuous deployment?
+2. What does "build once, promote the same artifact" mean, and why?
+3. Describe the stages of a typical pipeline.
+4. How do you keep a pipeline fast?
+5. What metrics tell you whether delivery is healthy?
+6. A deploy broke production even though all pipeline checks passed. What do you change?
+
+**[Deployment strategies](../cicd/deployment-strategies.md)**
+
+1. Compare rolling, blue-green and canary deployments.
+2. How do you implement blue-green on Kubernetes?
+3. What is a feature flag and how does it change deployment risk?
+4. How do you change a database schema safely with zero-downtime deploys?
+5. When would you roll forward instead of rolling back?
+6. A canary at 5% shows the same error rate as the stable version, but users complain after full rollout. What went wrong?
+
+**[GitHub Actions basics](../cicd/github-actions-basics.md)**
+
+1. Explain workflow, job, step, action and runner.
+2. How do jobs share data?
+3. What is `GITHUB_TOKEN` and how do you limit it?
+4. What does `concurrency` do in the Pages workflow?
+5. Why are secrets not available to pull requests from forks?
+6. A workflow did not run after a push. How do you find out why?
+
+**[GitHub Actions in depth](../cicd/github-actions-in-depth.md)**
+
+1. When would you use a reusable workflow versus a composite action?
+2. How do you require approval before deploying to production?
+3. Why pin actions to a commit SHA, and what does GitHub now recommend?
+4. What is the risk of `pull_request_target`?
+5. What are the risks of self-hosted runners?
+6. A workflow fails only sometimes. How do you debug it?
+
+**[Jenkins](../cicd/jenkins.md)**
+
+1. Explain the controller and agent architecture.
+2. Declarative vs scripted pipelines?
+3. What is a shared library and why use one?
+4. How do you use secrets safely in a Jenkinsfile?
+5. How do you run Jenkins agents on Kubernetes?
+6. Builds queue for a long time. What do you check?
+
+**[Bitbucket Pipelines](../cicd/bitbucket-pipelines.md)**
+
+1. Describe the structure of `bitbucket-pipelines.yml`.
+2. What is the difference between caches and artifacts?
+3. How do deployments and variables work together?
+4. How do you deploy to AWS from Bitbucket without stored keys?
+5. What is a pipe?
+
+**[OIDC from pipelines to AWS](../cicd/oidc-to-aws.md)**
+
+1. Why use OIDC instead of access keys in CI?
+2. Walk through the OIDC flow from a GitHub Actions job to AWS.
+3. Why must the trust policy pin `sub`?
+4. A job fails with "Not authorized to perform sts:AssumeRoleWithWebIdentity". Debug it.
+5. How does Bitbucket's OIDC differ from GitHub's?
+6. How would you design roles for plan and deploy?
+
+**[Pipeline security](../cicd/pipeline-security.md)**
+
+1. Why is the CI/CD pipeline an attractive target?
+2. What is poisoned pipeline execution?
+3. How do you prevent script injection in GitHub Actions?
+4. How should secrets be handled in pipelines?
+5. What are SBOMs, provenance and signing for?
+6. A popular third-party action was compromised yesterday. What do you do?
+
+**[Quality and security gates](../cicd/quality-and-security-gates.md)**
+
+1. What is the difference between SAST, SCA and DAST?
+2. What is a SonarQube quality gate?
+3. How do you decide whether a finding fails the build or only warns?
+4. A critical CVE is reported in a base image used by 30 services. What do you do?
+5. How do you keep security scanning from slowing delivery?
+6. A secret was committed and pushed. What now?
+
+**[Build tools: Maven, Gradle, npm](../cicd/build-tools.md)**
+
+1. What happens when you run `mvn package`?
+2. Why commit the Gradle wrapper?
+3. What is the difference between `npm install` and `npm ci`?
+4. How do you make builds faster in CI?
+5. What is a SNAPSHOT version and why not deploy one to production?
+
+**[Artifacts and registries](../cicd/artifacts-and-registries.md)**
+
+1. What are hosted, proxy and group repositories?
+2. Why put a proxy repository in front of public registries?
+3. What does "immutable artifact" mean and why does it matter?
+4. How do you promote an artifact from staging to production?
+5. How are Helm charts stored in container registries?
+6. What retention policy would you set for an image repository?
+
+## GitOps and Argo CD
+
+
+**[GitOps principles](../gitops/principles.md)**
+
+1. What is GitOps?
+2. Compare push-based CI/CD with pull-based GitOps.
+3. Why separate the config repository from the application repository?
+4. What does GitOps not solve by itself?
+5. An engineer scaled a Deployment by hand during an incident; ten minutes later it went back. Why, and what should they have done?
+6. How would you structure a config repository for three environments?
+
+**[Argo CD architecture and Applications](../gitops/argocd-architecture.md)**
+
+1. Describe Argo CD's main components.
+2. What does an Application define?
+3. What is the difference between sync status and health status?
+4. What is an AppProject for?
+5. How does a commit reach the cluster, and how fast?
+6. An Application shows `Unknown` sync status with a comparison error. What do you check?
+
+**[Sync, hooks and waves](../gitops/sync-hooks-waves.md)**
+
+1. What is the difference between refresh, hard refresh and sync?
+2. What do `prune` and `selfHeal` do, and what are their defaults?
+3. How do you run a database migration before the new version starts?
+4. What are sync waves?
+5. An app is always OutOfSync on `spec.replicas`. Why, and how do you fix it?
+6. How do Helm hooks behave under Argo CD?
+
+**[App-of-apps and ApplicationSets](../gitops/app-of-apps-and-applicationsets.md)**
+
+1. What is the app-of-apps pattern?
+2. What is an ApplicationSet and what are generators?
+3. When would you use app-of-apps and when ApplicationSets?
+4. How can one ApplicationSet change cause an outage, and how do you prevent it?
+5. How do you deploy an add-on to every production cluster?
+6. How do you build preview environments per pull request with Argo CD?
+
+**[Deletion, finalizers and safe cleanup](../gitops/deletion-and-finalizers.md)**
+
+1. What happens when you delete an Argo CD Application?
+2. How do you protect a PVC from being deleted with its Application?
+3. How do you move resources from one Application to another without downtime?
+4. How can a single change delete many applications in an app-of-apps or ApplicationSet setup?
+5. An Application has been "deleting" for an hour. What do you check?
+6. What does `Prune=confirm` do?
+
+**[Promotion, rollback and troubleshooting](../gitops/promotion-and-rollback.md)**
+
+1. How do you deploy a new version with GitOps?
+2. How do you promote from staging to production?
+3. How do you roll back, and why not with `argocd app rollback`?
+4. An application is OutOfSync. Walk through your triage.
+5. Production is Degraded right after a deploy. What do you do?
+6. Someone changed a Deployment by hand and it keeps reverting. Explain.
+
+## Observability
+
+
+**[Signals and methods](../observability/signals-and-methods.md)**
+
+1. What are metrics, logs and traces each best for?
+2. Explain RED and USE.
+3. What are the four golden signals?
+4. What is cardinality and why does it matter?
+5. What is the difference between monitoring and observability?
+6. What would you monitor for a new web API before launch?
+
+**[Prometheus](../observability/prometheus.md)**
+
+1. How does Prometheus collect metrics, and why pull?
+2. Explain counter, gauge, histogram and summary.
+3. What is a time series in Prometheus?
+4. What causes high cardinality and how do you fix it?
+5. When should you use the Pushgateway?
+6. What are kube-state-metrics and node_exporter for?
+
+**[PromQL](../observability/promql.md)**
+
+1. What is the difference between an instant vector and a range vector?
+2. Explain `rate`, `irate` and `increase`.
+3. Why must you take `rate()` before `sum()`?
+4. Write a query for the error ratio of a service.
+5. How do you compute p99 latency across all pods?
+6. What are recording rules and how should they be named?
+
+**[Prometheus on Kubernetes](../observability/prometheus-on-kubernetes.md)**
+
+1. What does kube-prometheus-stack install?
+2. What is a ServiceMonitor, and how does Prometheus find it?
+3. You created a ServiceMonitor but the target never appears. What do you check?
+4. ServiceMonitor or PodMonitor?
+5. How do you add an alert rule for your application?
+
+**[Alerting and Alertmanager](../observability/alerting.md)**
+
+1. What do Prometheus and Alertmanager each do in alerting?
+2. What do `for` and `keep_firing_for` do?
+3. Explain grouping, inhibition and silences.
+4. Why alert on symptoms rather than causes?
+5. What should a good alert notification contain?
+6. The on-call engineer gets 40 pages a week, mostly ignored. What do you do?
+
+**[SLOs and error budgets](../observability/slos.md)**
+
+1. What are SLI, SLO and SLA?
+2. What is the error budget for 99.9% over 30 days?
+3. What is a burn rate and why alert on it?
+4. Why use multi-window burn-rate alerts?
+5. How would you choose SLIs for an API?
+6. The error budget is exhausted halfway through the month. What happens?
+
+**[Grafana](../observability/grafana.md)**
+
+1. What is a Grafana data source and why does it matter for queries?
+2. How do variables make dashboards reusable?
+3. How do you manage dashboards as code?
+4. Grafana alerting or Alertmanager?
+5. How would you lay out a service dashboard?
+
+**[How Kubernetes logging works](../observability/kubernetes-logging.md)**
+
+1. Where do container logs go in Kubernetes?
+2. What does `kubectl logs` actually read?
+3. How would you collect logs from every pod in a cluster?
+4. When are logs lost?
+5. What is the CRI log format?
+6. Why prefer structured (JSON) logs?
+
+**[Fluent Bit](../observability/fluent-bit.md)**
+
+1. Describe the Fluent Bit pipeline.
+2. How does Fluent Bit avoid re-reading or skipping logs after a restart?
+3. What does the kubernetes filter do?
+4. Memory vs filesystem buffering?
+5. Logs went missing during a 10-minute OpenSearch outage. Why, and how do you prevent it?
+6. How do you handle multiline stack traces?
+
+**[OpenSearch](../observability/opensearch.md)**
+
+1. Explain index, shard and replica.
+2. What do green, yellow and red mean?
+3. What is mapping explosion and how do you prevent it?
+4. Writes suddenly fail with an index read-only error. Why?
+5. How do you manage log index lifecycle?
+6. Fluent Bit reports HTTP 429 from OpenSearch. What do you do?
+
+**[Tracing and OpenTelemetry](../observability/tracing.md)**
+
+1. What are a trace and a span?
+2. How does context propagate between services?
+3. Head vs tail sampling?
+4. What does the OpenTelemetry Collector do?
+5. With Istio installed, why might traces still be broken?
+
+## Security
+
+
+**[OAuth 2.0, OIDC and JWTs](../security/oauth-oidc-jwt.md)**
+
+1. What is the difference between authentication and authorisation, and between OAuth and OIDC?
+2. Walk through the authorization code flow with PKCE.
+3. What is inside a JWT and how do you validate one?
+4. When would you use the client credentials flow?
+5. What is the difference between an ID token and an access token?
+6. How do CI pipelines and pods use these ideas to reach AWS?
+
+**[Secrets management](../security/secrets-management.md)**
+
+1. Where should secrets never be stored?
+2. Describe the secret lifecycle.
+3. How do you manage secrets with GitOps?
+4. Why can rotating a secret break an application, and how do you avoid it?
+5. A developer pushed an AWS access key to GitHub. What do you do?
+6. What is better than a well-managed long-lived secret?
+
+**[Vulnerability and patch management](../security/vulnerability-and-patch-management.md)**
+
+1. What are CVE, CVSS, EPSS and KEV?
+2. How do you prioritise vulnerability findings?
+3. How do you patch containers?
+4. How do you patch a fleet of EC2 instances or EKS nodes safely?
+5. What metrics show whether vulnerability management works?
+6. A critical CVE is announced in a base image used everywhere. Walk through your response.
+
+**[Hardening and benchmarks](../security/hardening-and-benchmarks.md)**
+
+1. What does hardening mean, and how do you start?
+2. What are CIS Benchmarks and how are they used?
+3. List cloud posture basics you would check in a new AWS account.
+4. How would you harden an EKS cluster?
+5. Why prefer preventive controls over detective ones?
+6. A scanner reports 400 benchmark failures across your accounts. How do you approach it?
+
+**[Guardrails for AI agents in operations](../security/ai-agent-guardrails.md)**
+
+1. Why is an AI agent with shell access a new kind of risk?
+2. What is the difference between an instruction and a hook as a control?
+3. How would you set up identities for an operations agent?
+4. What should happen before an agent makes a change?
+5. What are the limits of human approval?
+6. What would you audit for agent activity?
+
+## Operations
+
+
+**[High availability and failure domains](../operations/high-availability.md)**
+
+1. What failure domains do you design for, and how?
+2. Compute the availability of two 99.9% components in series and in parallel.
+3. Why add jitter to retries?
+4. How do you make a Kubernetes workload survive the loss of a zone?
+5. What is a circuit breaker?
+6. Your service is 99.99% available but depends on a 99.9% database. What can you promise?
+
+**[Backup and disaster recovery](../operations/backup-and-dr.md)**
+
+1. What are RPO and RTO?
+2. Describe the four DR strategies on AWS.
+3. Why is replication not a backup?
+4. If you run everything with GitOps, what still needs backing up?
+5. How do you know your backups work?
+6. Design backups for a production database with a 15-minute RPO.
+
+**[Cost optimisation](../operations/cost-optimisation.md)**
+
+1. How would you start reducing an AWS bill?
+2. Compare On-Demand, Spot, Savings Plans and Reserved Instances.
+3. Why can a Kubernetes cluster be expensive even when nodes look full?
+4. How do NAT gateways become a large cost, and what do you do?
+5. How do you keep costs under control without slowing teams?
+6. What would you not cut to save money?
+
+**[Incident response and postmortems](../operations/incident-response.md)**
+
+1. Walk me through how you handle a production incident.
+2. What does an incident commander do?
+3. Why mitigate before finding the root cause?
+4. What makes a postmortem blameless, and why does it matter?
+5. What goes into a postmortem?
+6. Tell me about an incident you handled. (How to structure the answer)
+
+**[Change management](../operations/change-management.md)**
+
+1. Why do changes cause most incidents, and what reduces the risk?
+2. What do you do before making a risky production change?
+3. What does "reversible steps first" mean?
+4. How much review should a change get?
+5. A change went wrong halfway through. What now?
+
+**[Migration patterns](../operations/migration-patterns.md)**
+
+1. What are rehost, replatform and refactor?
+2. How would you move a stateful service from VMs to Kubernetes?
+3. What is the strangler fig pattern?
+4. How do you migrate a database with minimal downtime?
+5. What does a good rollback plan for a migration contain?
+6. When is a migration finished?
