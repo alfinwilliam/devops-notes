@@ -264,8 +264,8 @@ Registries sit between CI and every cluster: CI pushes and records digests, and 
 
 - [OCI distribution specification](https://github.com/opencontainers/distribution-spec)
 - [Docker documentation: docker image push](https://docs.docker.com/reference/cli/docker/image/push/)
-- [Docker documentation: registry](https://docs.docker.com/registry/)
-- [Trivy documentation](https://trivy.dev/latest/)
+- [CNCF Distribution: the open-source registry behind registry:2](https://distribution.github.io/distribution/)
+- [Trivy documentation](https://trivy.dev/docs/latest/guide/)
 - [Amazon ECR documentation: image tag mutability](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html)
 - [CycloneDX specification](https://cyclonedx.org/)
 - [Go release history and security fixes](https://go.dev/doc/devel/release)
