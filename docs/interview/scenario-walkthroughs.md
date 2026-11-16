@@ -98,7 +98,7 @@ Each scenario starts with **the question to ask first**, then numbered steps. In
 
 **Ask first:** what changed: code, provider version, state, or the real infrastructure?
 
-1. Do not apply. Read the plan for the reason: `# forces replacement` and the attribute marked `# forces replacement` ([Reading a plan](../iac/reading-a-plan.md)).
+1. Do not apply. Find each resource marked `must be replaced` or `will be destroyed`, and the attribute flagged `# forces replacement` ([Reading a plan](../iac/reading-a-plan.md)).
 2. A rename or move in code: add a `moved` block instead of destroy and create ([Import, moved and drift](../iac/import-and-drift.md)).
 3. A `count` index shift: switch to `for_each` with stable keys ([Terraform language](../iac/language.md)).
 4. Wrong workspace, backend or variables file: check `terraform workspace show` and the backend config.
