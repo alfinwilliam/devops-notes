@@ -7,7 +7,7 @@ commands: container
 
 # EBS
 
-> **Status: AI draft, 2026-11-16.** Not yet verified by me. Written from the Amazon EBS User Guide; the filesystem-grow output is real, from a loop device in a throwaway `ubuntu:24.04` container standing in for an EBS volume. No AWS calls were made.
+> **Status: AI draft, 2026-11-16.** Not yet verified by me. Written from the Amazon EBS User Guide; the filesystem-grow output is real, from a loop device in a throwaway `ubuntu:24.04` container standing in for an EBS volume (loop device number normalised to loop0). No AWS calls were made.
 
 ## In one line
 
