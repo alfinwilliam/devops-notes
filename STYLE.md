@@ -143,6 +143,7 @@ The same file must render on the site and on github.com.
 - Mermaid only, in a fence with the language `mermaid`. The first line is `flowchart LR`, `flowchart TD` or `sequenceDiagram`.
 - Node ids are plain letters and digits. Every node label is in double quotes: `A["Recursive resolver"]`. Edge labels too: `A -->|"asks"| B`.
 - Inside a label: no double quotes, no backticks, no `{{` or `}}`, no `#`, no `;`.
+- Prefer `flowchart TD` (top to bottom) for a chain of more than four steps: a long `LR` chain is shrunk to fit the column and its text becomes hard to read. Readers can click any diagram to enlarge it, but it should be readable without that.
 - At most 12 nodes, or 6 participants. No styling (`classDef`, `style`, `linkStyle`), no `click`, at most one level of `subgraph`.
 - The diagram must agree with the text: same names, same order.
 
