@@ -217,6 +217,7 @@ These are the only values allowed. An automatic scan rejects anything else.
 |---|---|
 | Private IPv4 | Anything inside `10.0.0.0/16` or `192.168.0.0/16`. As whole ranges only: `10.0.0.0/8`, `172.16.0.0/12`, `100.64.0.0/10`, `169.254.0.0/16`. |
 | Public IPv4 | Anything inside `203.0.113.0/24`, `198.51.100.0/24` or `192.0.2.0/24`. Also `8.8.8.8`, `8.8.4.4`, `1.1.1.1`, `0.0.0.0`, `0.0.0.0/0`, `127.0.0.x`, `169.254.169.254`. |
+| Several separate networks (VPCs, an office) | Split `10.0.0.0/16`, for example `10.0.0.0/18`, `10.0.64.0/18`, `10.0.128.0/18`, or use ranges inside `192.168.0.0/16` |
 | IPv6 | Anything inside `2001:db8::/32`, and `::1` |
 | Docker's default bridge | `172.17.0.0/16`, with `172.17.0.1`, `172.17.0.2`, `172.17.0.3` (also written with `/16`), and `172.17.255.255` |
 | A `kind` node | `172.18.0.0/16`, with `172.18.0.2`, `172.18.0.3` |
