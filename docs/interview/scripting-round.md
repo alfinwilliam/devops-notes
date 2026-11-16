@@ -274,7 +274,7 @@ tr -s '[:space:]' '\n' < words.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c
       1 sleeps
 ```
 
-Ties (every word with count 1) come out in whatever order `sort` leaves them; add `-k2` to the last sort to make it stable. Python: `Counter(open("words.txt").read().lower().split()).most_common(3)`.
+Ties (every word with count 1) come out in whatever order `sort` leaves them; replace the last sort with `sort -k1,1rn -k2,2` to break ties alphabetically. Python: `Counter(open("words.txt").read().lower().split()).most_common(3)`.
 
 </details>
 
